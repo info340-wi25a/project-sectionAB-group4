@@ -2,10 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="author" content="Kylie Oeffie">
-    <meta name="author" content="Akhil Damidi">
-    <meta name="author" content="Satvik Shreesha">
-    <meta name="author" content="Anant Dhokia">
+    <meta name="author" content="Kylie Oeffie, Akhil Damidi, Satvik Shreesha, Anant Dhokia">
     <meta name="description" content="INFO340 - AB4 Project Proposal">
     <title>Rent-A-Tool Project Proposal- Section AB Group 4</title>
     <link rel="stylesheet" href="css/proposal.css">
@@ -19,14 +16,9 @@
         <section id="intro-information">
             <h2>Introduction</h2>
             <h3>Authors</h3>
-            <p>
-                Satvik Shreesha, Akhil Damidi, Kylie Oeffie, Anant Dhokia
-            </p>
-
+            <p>Satvik Shreesha, Akhil Damidi, Kylie Oeffie, Anant Dhokia</p>
             <h3>Extra Information</h3>
-            <p>
-               This project was created through INFO 340: Client-Side Development, a class at the University of Washington.
-            </p>
+            <p>This project was created through INFO 340: Client-Side Development, a class at the University of Washington.</p>
         </section>
 
         <section id="problem-description">
@@ -38,14 +30,12 @@
                 limited storage. Existing rental platforms (like Home Depot rentals) often have limited inventory and higher
                 prices. Additionally, local peer-to-peer sharing platforms are fragmented or nonexistent.
             </p>
-
             <h3>Information Problem</h3>
             <p>
                 There’s no cohesive solution enabling peer-to-peer renting for underutilized tools and equipment in local
                 communities. Users face challenges finding nearby tools at reasonable prices or renting their own unused
                 items securely. Current solutions lack seamless user interfaces, proper data organization, and persistence.
             </p>
-
             <h3>Existing Solutions</h3>
             <ul>
                 <li><a href="https://www.homedepot.com/c/tool-and-equipment-rental?mtc=SEM-BF-RNT-GGL-D78-Multi-NA-NA-NA-ETA-NA-NA-NA-NA-BT2-NA-NA-NA-G_B_THDR_Tool_PACIFIC_NORTHWEST_E&cm_mmc=SEM-BF-RNT-GGL-D78-Multi-NA-NA-NA-ETA-NA-NA-NA-NA-BT2-NA-NA-NA-G_B_THDR_Tool_PACIFIC_NORTHWEST_E-1743598289-65075657461-315085641733&gad_source=1&gclid=CjwKCAiAnKi8BhB0EiwA58DA4Wco-oLVQext1yFlQzAlhJQD0ajY--U8IiSmQqpaVYWGNURuAryN5RoC0qIQAvD_BwE&gclsrc=aw.ds" target="_blank">Home Depot Tool Rentals</a>: Expensive for short-term use; lacks user-to-user interaction.</li>
@@ -64,20 +54,25 @@
 
             <h3>Key Features</h3>
             <ol>
-                <li>Interactive Catalog of Tools (Feature 1)
+                <li>Listing Tools for Rent (Feature 1)
                     <ul>
-                        <li>Users can browse tools available in their area using filters
-                            (e.g., category, price, availability).</li>
+                        <li>Tool owners can list tools they own for rent, including descriptions, photos, pricing, and availability. (Sensitive info such as locations will be blurred and only contain general info such as city or zip code)</li>
+                        <li>Owners will have a dashboard to manage their tool listings, and respond to renter requests to book their tools.</li>
                     </ul>
                 </li>
-                <li>Rental Booking System (Feature 2)
+                <li>Interactive Catalog of Tools (Feature 2)
+                    <ul>
+                        <li>Users can browse tools available in their area using filters (e.g., category, price, availability) to find tools they'd like to rent.</li>
+                    </ul>
+                </li>
+                <li>Rental Booking System (Feature 3)
                     <ul>
                         <li>Users can request bookings for tools, specifying rental dates and times.</li>
                         <li>Tool owners receive notifications and can accept/decline requests.</li>
                     </ul>
                 </li>
                 <li>
-                    User Reviews and Ratings (Feature 3 - Half)
+                    User Reviews and Ratings (Feature 4 - Half)
                     <ul>
                         <li>After completing a rental, users can rate their experience and provide feedback.</li>
                         <li>Ratings help maintain quality and trust within the community.</li>
@@ -85,55 +80,94 @@
                 </li>
             </ol>
         </section>
+        <div>
+            <section class="functionality-walkthrough" id="functionality-walkthrough">
+                <h2>Functionality Walkthrough <em>(Tool Renter)</em></h2>
 
-        <section id="functionality-walkthrough">
-            <h2>Functionality Walkthrough</h2>
+                <h3>1. Homepage & Tool Catalog</h3>
+                <p>
+                    <strong>User Action:</strong>
+                    Users land on a homepage featuring an introduction to the platform
+                    and a tool catalog. They can browse tools or log in for more features.
+                </p>
 
-            <h3>1. Homepage & Tool Catalog</h3>
-            <p>
-                <strong>User Action:</strong>
-                Users land on a homepage featuring an introduction to the platform
-                and a tool catalog. They can browse tools or log in for more features.
-            </p>
+                <h3>2. Tool Details Page</h3>
+                <p>
+                    <strong>User Action:</strong>
+                    Clicking on a tool displays its details, including descriptions, photos
+                    pricing, availability, and user review. A "Book Now" button initiates
+                    the booking process.
+                </p>
 
-            <h3>2. Tool Details Page</h3>
-            <p>
-                <strong>User Action:</strong>
-                Clicking on a tool displays its details, including descriptions, photos
-                pricing, availability, and user review. A "Book Now" button initiates
-                the booking process.
-            </p>
+                <h3>3. User Authentication</h3>
+                <p>
+                    <strong>User Action:</strong>
+                    Users must log in or create an account to rent or list tools.
+                </p>
 
-            <h3>3. User Authentication</h3>
-            <p>
-                <strong>User Action:</strong>
-                Users must log in or create an account to rent or list tools.
-            </p>
+                <h3>4. Booking Tools</h3>
+                <p>
+                    <strong>User Action:</strong>
+                    Logged-in users can select rental dates from an interactive calendar
+                    and click "Book Now." The tool owner received a notification of the
+                    booking request and can approve or deny it.
+                </p>
 
-            <h3>4. Booking Tools</h3>
-            <p>
-                <strong>User Action:</strong>
-                Logged-in users can select rental dates from an interactive calendar
-                and click "Book Now." The tool owner received a notification of the
-                booking request and can approve or deny it.
-            </p>
+                <h3>5. Booking Confirmed</h3>
+                <p>
+                    <strong>User Action:</strong>
+                    Once the tool owner approves the booking, the user receives a confirmation
+                    and can view the rental details in their account and move onto the next steps
+                    of getting and using the tool.
+                </p>
 
-            <h3>5. Booking Confirmed</h3>
-            <p>
-                <strong>User Action:</strong>
-                Once the tool owner approves the booking, the user receives a confirmation
-                and can view the rental details in their account and move onto the next steps
-                of getting and using the tool.
-            </p>
+                <h3>6. Reviewing Tools</h3>
+                <p>
+                    <strong>User Action:</strong>
+                    After returning the tool, users can rate their experience and provide feedback
+                    to the tool owner. Ratings help maintain trust and quality within the community.
+                    And will be displayed on the tool's details page. Users will also be able to sort
+                    tools by ratings so renters who are looking for the best tools can find them easily.
+            </section>
+            <section class="functionality-walkthrough" id="functionality-walkthrough">
+                <h2>Functionality Walkthrough <em>(Tool Owner)</em></h2>
 
-            <h3>6. Reviewing Tools</h3>
-            <p>
-                <strong>User Action:</strong>
-                After returning the tool, users can rate their experience and provide feedback
-                to the tool owner. Ratings help maintain trust and quality within the community.
-                And will be displayed on the tool's details page. Users will also be able to sort
-                tools by ratings so renters who are looking for the best tools can find them easily.
-        </section>
+                <h3>1. Sign-Up & Dashboard</h3>
+                <p>
+                    <strong>User Action:</strong>
+                    After successfully setting up an account, tool owners can access their dashboard which displays their listings, requests, and reviews. They can also add new tools to rent here too.
+                </p>
+
+                <h3>2. Create Listing</h3>
+                <p>
+                    <strong>User Action:</strong>
+                    Users can create a new listing by providing details about the tool, including photos, descriptions, pricing, and availability.
+                </p>
+
+                <h3>3. User Authentication</h3>
+                <p>
+                    <strong>User Action:</strong>
+                    Users must be logged in to be able to manage, or create new listings.
+                </p>
+
+                <h3>4. Booking Requests</h3>
+                <p>
+                    <strong>User Action:</strong>
+                    When users request to book an owner's tool, the owner receives a notification and can approve or deny the request after looking at booking details and the renter's ratings.
+                </p>
+
+                <h3>5. Booking Confirmed</h3>
+                <p>
+                    <strong>User Action:</strong>
+                    After the owner confirms the booking, the user receives a confirmation and can view the rental details in their account.
+                </p>
+
+                <h3>6. Managing Reviews</h3>
+                <p>
+                    <strong>User Action:</strong>
+                    Tool owners can view other user's reviews of their tools to get feedback on how to improve their bookings. After an owner gets their tools back, they can also rate renters to help maintain trust and quality within the community to ensure that renters are taking care of the tools.
+            </section>
+        </div>
     </main>
 </body>
 </html>
