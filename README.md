@@ -17,10 +17,23 @@ This repository contains code for an interactive information web app, created fo
     - price per day
     - button to initiate rental request
 
-- Dashboard page (acessible at login and from main page if already logged in)
-    - Account details
-    - Your listed tools (status that indicate whether its rented out or just listed)
-    - The tools you are renting and have rented in the past (current and history)
+- Your Listings Page (accessible from navbar)
+    - Has a list of your listings and their status
+        Rented or just listed
+        Can edit a listing
+        Delete a listing
+
+- Your Rentings page (accessible from navbar)
+    - Has a list of your current (and past) rentals
+    - Can view info about all your current and past bookings
+    - Status on pending bookings
+
+- NavBar
+    - Main page (go browse tools)
+    - Your listings (if logged in)
+    - Your rentings (if logged in)
+    - Log Out (if logged in)
+    - Login (if logged out)
 
 - Create listing (accessible through Main page)
     - Will be a html form
