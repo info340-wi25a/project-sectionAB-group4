@@ -25,16 +25,11 @@
             <h2>Problem Description</h2>
             <h3>Overview</h3>
             <p>
-                Many people own tools or equipment (e.g., ladders, power washers, party supplies) that they use infrequently.
-                Meanwhile, others need these tools for short-term use but are unwilling to buy them due to high costs or
-                limited storage. Existing rental platforms (like Home Depot rentals) often have limited inventory and higher
-                prices. Additionally, local peer-to-peer sharing platforms are fragmented or nonexistent.
+                Many people own tools or equipment (e.g., ladders, power washers, party supplies) that they use infrequently. Meanwhile, others need these tools for short-term use but are unwilling to buy them due to high costs or limited storage. Existing rental platforms (like Home Depot rentals) often have limited inventory and higher prices. Additionally, local peer-to-peer sharing platforms are fragmented or nonexistent.
             </p>
             <h3>Information Problem</h3>
             <p>
-                There’s no cohesive solution enabling peer-to-peer renting for underutilized tools and equipment in local
-                communities. Users face challenges finding nearby tools at reasonable prices or renting their own unused
-                items securely. Current solutions lack seamless user interfaces, proper data organization, and persistence.
+                There’s no cohesive solution enabling peer-to-peer renting for underutilized tools and equipment in local communities. Users face challenges finding nearby tools at reasonable prices or renting their own unused items securely. Current solutions lack seamless user interfaces, proper data organization, and persistence.
             </p>
             <h3>Existing Solutions</h3>
             <ul>
@@ -47,22 +42,26 @@
             <h2>App Description</h2>
             <h3>Proposed Solution</h3>
             <p>
-                Rent-A-Tool is a web application connecting users looking to rent tools or equipment with those offering unused
-                items. The platform provides an intuitive interface for browsing, booking, and managing rentals with secure
-                and persistent data storage.
+                Rent-A-Tool is a web application connecting users looking to rent tools or equipment with those offering unused items. The platform provides an intuitive interface for browsing, booking, and managing rentals with secure and persistent data storage.
             </p>
 
             <h3>Key Features</h3>
             <ol>
                 <li>Listing Tools for Rent (Feature 1)
                     <ul>
-                        <li>Tool owners can list tools they own for rent, including descriptions, photos, pricing, and availability. (Sensitive info such as locations will be blurred and only contain general info such as city or zip code)</li>
-                        <li>Owners will have a dashboard to manage their tool listings, and respond to renter requests to book their tools.</li>
+                        <li>
+                            Tool owners can list tools they own for rent, including descriptions, photos, pricing, and availability. (Sensitive info such as locations will be blurred and only contain general info such as city or zip code)
+                        </li>
+                        <li>
+                            Owners will have a dashboard to manage their tool listings, and respond to renter requests to book their tools.
+                        </li>
                     </ul>
                 </li>
                 <li>Interactive Catalog of Tools (Feature 2)
                     <ul>
-                        <li>Users can browse tools available in their area using filters (e.g., category, price, availability) to find tools they'd like to rent.</li>
+                        <li>
+                            Users can browse tools available in their area using filters (e.g., category, price, availability) to find tools they'd like to rent.
+                        </li>
                     </ul>
                 </li>
                 <li>Rental Booking System (Feature 3)
@@ -86,86 +85,64 @@
 
                 <h3>1. Homepage & Tool Catalog</h3>
                 <p>
-                    <strong>User Action:</strong>
-                    Users land on a homepage featuring an introduction to the platform
-                    and a tool catalog. They can browse tools or log in for more features.
+                    <strong>User Action:</strong> Users land on a homepage featuring an introduction to the platform and a tool catalog. They can browse tools or log in for more features.
                 </p>
 
                 <h3>2. Tool Details Page</h3>
                 <p>
-                    <strong>User Action:</strong>
-                    Clicking on a tool displays its details, including descriptions, photos
-                    pricing, availability, and user review. A "Book Now" button initiates
-                    the booking process.
+                    <strong>User Action:</strong> Clicking on a tool displays its details, including descriptions, photos pricing, availability and user review. A "Book Now" button initiates the booking process.
                 </p>
 
                 <h3>3. User Authentication</h3>
                 <p>
-                    <strong>User Action:</strong>
-                    Users must log in or create an account to rent or list tools.
+                    <strong>User Action:</strong> Users must log in or create an account to rent or list tools.
                 </p>
 
                 <h3>4. Booking Tools</h3>
                 <p>
-                    <strong>User Action:</strong>
-                    Logged-in users can select rental dates from an interactive calendar
-                    and click "Book Now." The tool owner received a notification of the
-                    booking request and can approve or deny it.
+                    <strong>User Action:</strong> Logged-in users can select rental dates from an interactive calendar and click "Book Now." The tool owner received a notification of the booking request and can approve or deny it.
                 </p>
 
                 <h3>5. Booking Confirmed</h3>
                 <p>
-                    <strong>User Action:</strong>
-                    Once the tool owner approves the booking, the user receives a confirmation
-                    and can view the rental details in their account and move onto the next steps
-                    of getting and using the tool.
+                    <strong>User Action:</strong> Once the tool owner approves the booking, the user receives a confirmation and can view the rental details in their account and move onto the next steps of getting and using the tool.
                 </p>
 
                 <h3>6. Reviewing Tools</h3>
                 <p>
-                    <strong>User Action:</strong>
-                    After returning the tool, users can rate their experience and provide feedback
-                    to the tool owner. Ratings help maintain trust and quality within the community.
-                    And will be displayed on the tool's details page. Users will also be able to sort
-                    tools by ratings so renters who are looking for the best tools can find them easily.
+                    <strong>User Action:</strong> After returning the tool, users can rate their experience and provide feedback to the tool owner. Ratings help maintain trust and quality within the community. And will be displayed on the tool's details page. Users will also be able to sort tools by ratings so renters who are looking for the best tools can find them easily.
             </section>
             <section class="functionality-walkthrough" id="functionality-walkthrough">
                 <h2>Functionality Walkthrough <em>(Tool Owner)</em></h2>
 
                 <h3>1. Sign-Up & Dashboard</h3>
                 <p>
-                    <strong>User Action:</strong>
-                    After successfully setting up an account, tool owners can access their dashboard which displays their listings, requests, and reviews. They can also add new tools to rent here too.
+                    <strong>User Action:</strong> After successfully setting up an account, tool owners can access their dashboard which displays their listings, requests, and reviews. They can also add new tools to rent here too.
                 </p>
 
                 <h3>2. Create Listing</h3>
                 <p>
-                    <strong>User Action:</strong>
-                    Users can create a new listing by providing details about the tool, including photos, descriptions, pricing, and availability.
+                    <strong>User Action:</strong> Users can create a new listing by providing details about the tool, including photos, descriptions, pricing, and availability.
                 </p>
 
                 <h3>3. User Authentication</h3>
                 <p>
-                    <strong>User Action:</strong>
-                    Users must be logged in to be able to manage, or create new listings.
+                    <strong>User Action:</strong> Users must be logged in to be able to manage, or create new listings.
                 </p>
 
                 <h3>4. Booking Requests</h3>
                 <p>
-                    <strong>User Action:</strong>
-                    When users request to book an owner's tool, the owner receives a notification and can approve or deny the request after looking at booking details and the renter's ratings.
+                    <strong>User Action:</strong> When users request to book an owner's tool, the owner receives a notification and can approve or deny the request after looking at booking details and the renter's ratings.
                 </p>
 
                 <h3>5. Booking Confirmed</h3>
                 <p>
-                    <strong>User Action:</strong>
-                    After the owner confirms the booking, the user receives a confirmation and can view the rental details in their account.
+                    <strong>User Action:</strong> After the owner confirms the booking, the user receives a confirmation and can view the rental details in their account.
                 </p>
 
                 <h3>6. Managing Reviews</h3>
                 <p>
-                    <strong>User Action:</strong>
-                    Tool owners can view other user's reviews of their tools to get feedback on how to improve their bookings. After an owner gets their tools back, they can also rate renters to help maintain trust and quality within the community to ensure that renters are taking care of the tools.
+                    <strong>User Action:</strong> Tool owners can view other user's reviews of their tools to get feedback on how to improve their bookings. After an owner gets their tools back, they can also rate renters to help maintain trust and quality within the community to ensure that renters are taking care of the tools.
             </section>
         </div>
     </main>
