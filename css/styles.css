@@ -121,6 +121,75 @@ section {
     max-height: 30px;
 }
 
+
+
+/* tool-details and booking-details styling */
+.tool-details-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.tool-img-large {
+    flex-grow: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: lightgray;
+    height: 100%;
+}
+
+.tool-img-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.tool-info {
+    flex-grow: 1;
+    background-color: white;
+    padding: 30px;
+    align-items: center;
+}
+
+button {
+    padding: 12px 20px;
+    background-color: #0078d4;
+    color: white;
+    font-size: 16px;
+    border:none;
+    width: 200px;
+}
+
+.booking-details-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+
+.paying {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display:flex;
+    flex-direction: column;
+}
+
+.calendar {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+
+
+
+
+
+
 /* index.html specific styling starts here */
 .main-page-container {
     display: flex;
