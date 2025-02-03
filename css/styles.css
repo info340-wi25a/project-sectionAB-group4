@@ -258,72 +258,72 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
+}
 
-  .logo {
+.logo {
     font-size: 2rem;
     color: #0078D4;
     text-decoration: none;
     font-weight: bold;
-  }
+}
 
   /* Navigation Links */
-  .nav-links {
+.nav-links {
     list-style: none;
     display: flex;
     gap: 1.5rem;
-  }
+}
 
-  .nav-link {
+.nav-link {
     color: #333333;
     text-decoration: none;
     font-size: 1rem;
     border-bottom: 2px solid transparent;
     transition: all 0.3s ease-in-out;
-  }
+}
 
-  .nav-link:hover {
+.nav-link:hover {
     color: #0078D4;
     border-bottom: 2px solid #0078D4;
-  }
+}
 
-  /* CTA Buttons */
-  .cta .btn {
+/* CTA Buttons */
+.cta .btn {
     padding: 0.7rem 1.5rem;
     text-decoration: none;
     border-radius: 5px;
     font-size: 1rem;
     font-weight: bold;
     transition: 0.3s ease-in-out;
-  }
+}
 
-  .btn {
+.btn {
     background: #333333;
     color: #ffffff;
-  }
+}
 
-  .btn:hover {
+.btn:hover {
     background: #0078D4;
     color: #ffffff;
-  }
+}
 
-  .btn-primary {
+.btn-primary {
     background: #0078D4;
     color: #ffffff;
-  }
+}
 
-  .btn-primary:hover {
+.btn-primary:hover {
     background: #005EA6;
-  }
+}
 
-  /* Footer */
-  footer {
+/* Footer */
+footer {
     background: #ffffff;
     color: #666666;
     text-align: center;
     padding: 1.5rem 0;
     border-top: 3px solid #0078D4;
-  }
+}
 
 @media (max-width: 768px) {
     /* Navbar & Header */
@@ -382,3 +382,48 @@ header {
         font-size: 0.9rem;
     }
 }
+
+/* create-listing.html specific styling starts here */
+.create-listing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #F4F4F4;
+}
+
+/* Page Header */
+#create-lisiting-header {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.header-listings h1 {
+    font-size: 2rem;
+    color: #333333;
+    margin: 10px 0;
+}
+
+/* Form Section */
+#create-listing-form-section {
+    width: 100%;
+    max-width: 800px;
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+}
+
+#create-listing-form fieldset {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: white;
+}
+
+
