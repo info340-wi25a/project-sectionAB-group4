@@ -1,7 +1,23 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #f4f4f4;
-    padding-left: 10px;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
@@ -102,4 +118,132 @@ section {
 .img-button img {
     max-width: 30px;
     max-height: 30px;
+}
+
+/* index.html specific styling starts here */
+.main-page-container {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: 100%;
+    min-height: 100vh;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+/* filter section */
+.filter-section {
+    width: 250px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* dropdown inputs */
+.filter input, .filter select {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* filter labels */
+.filter label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* submit filters button */
+.filter-container button {
+    background-color: #0078d4;
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+}
+
+.filter-container button:hover {
+    background-color: #005fa3;
+}
+
+/* tool listings section */
+.marketplace {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.listing-card {
+    width: 260px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+.listing-card:hover {
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.listing-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+}
+
+.listing-details {
+    padding: 15px;
+}
+
+.listing-details h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #27ae60;
+    margin-bottom: 5px;
+}
+
+.description {
+    font-size: 14px;
+    color: #666;
+}
+
+.marketplace a {
+    text-decoration: none;
+}
+
+/* changes to the layout on smaller screens so filters come above marketplace content*/
+@media (max-width: 768px) {
+    .main-page-container {
+        flex-direction: column;
+    }
+
+    .filter-section {
+        width: 100%;
+        box-shadow: none;
+    }
+
+    .marketplace {
+        justify-content: flex-start;
+    }
 }
