@@ -1,124 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="author" content="Kylie Oeffie, Akhil Damidi, Satvik Shreesha, Anant Dhokia">
-    <meta name="description" content="INFO340 - AB4 Project Proposal - Rent-A-Tool Static Mockup">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Browse | Rent-A-Tool App</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
-    <header>
-        <nav class="navbar">
-            <a href="index.html" class="logo">Rent-A-Tool</a>
-            <ul class="nav-links">
-                <li><a href="index.html#browse-tools" class="nav-link">Browse Tools</a></li>
-                <li><a href="user-listings.html" class="nav-link">Your Listings</a></li>
-                <li><a href="user-rentings.html" class="nav-link">Your Rentings</a></li>
-                <li><a href="create-listing.html" class="nav-link">Create Listings</a></li>
-                <li><a href="booking-details.html" class="nav-link">Booking Details</a></li>
-                <li><a href="tool-details.html" class="nav-link">Tool Details</a></li>
-            </ul>
-
-            <div class="cta">
-                <a id="login-link" href="login.html" class="btn">Login</a>
-                <a id="signup-link" href="signup.html" class="btn btn-primary">Sign Up</a>
-                <a id="logout-link" href="logout.html" class="btn">Log Out</a>
-            </div>
-        </nav>
-    </header>
-
-    <div class="main-page-container">
-        <div class="filter-section">
-            <h2>Apply Filters</h2>
-            <form class="filter-container">
-                <div class="filter">
-                    <label for="location">Location:</label>
-                    <input type="text" id="location" name="location" placeholder="Enter City">
-                </div>
-
-                <div class="filter">
-                    <label for="min-price">Minimum Price ($):</label>
-                    <input type="number" id="min-price" name="min-price" placeholder="e.g. 10">
-                </div>
-
-                <div class="filter">
-                    <label for="max-price">Maximum Price ($):</label>
-                    <input type="number" id="max-price" name="max-price" placeholder="e.g. 100">
-                </div>
-
-                <div class="filter">
-                    <label for="category">Category:</label>
-                    <select id="category" name="category">
-                        <option value="all">All</option>
-                        <option value="power-tools">Power Tools</option>
-                        <option value="hand-tools">Hand Tools</option>
-                        <option value="automotive">Automotive</option>
-                        <option value="gardening">Gardening</option>
-                        <option value="construction">Construction</option>
-                        <option value="plumbing">Plumbing</option>
-                        <option value="electrical">Electrical</option>
-                        <option value="miscellaneous">Miscellaneous</option>
-                    </select>
-                </div>
-
-                <button type="submit">Apply Filters</button>
-            </form>
-        </div>
-
-        <div id="browse-tools" class="browse-section">
-            <h1>Browse Tools</h1>
-            <div class="marketplace">
-                <a href="product-details.html">
-                    <div class="listing-card">
-                        <img src="img/arc_welding_machine.jpg" alt="ARC Welding Machine">
-                        <div class="listing-details">
-                            <h3>ARC Welding Machine</h3>
-                            <p class="price">$35/day</p>
-                            <p class="description">A hand-held welding machine that can be used for various welding needs.</p>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="product-details.html">
-                    <div class="listing-card">
-                        <img src="img/power-washer.jpg" alt="Draper Power Washer, 2200W, 165bar">
-                        <div class="listing-details">
-                            <h3>Drapper Power Washer, 2200W, 165bar</h3>
-                            <p class="price">$45/day</p>
-                            <p class="description">A 2200W power washer that can be used for washing driveways, homes, etc.</p>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="product-details.html">
-                    <div class="listing-card">
-                        <img src="img/power-drill.jpg" alt="BLACK+DECKER 20V Max Cordless Drill">
-                        <div class="listing-details">
-                            <h3>BLACK+DECKER 20V Max Cordless Drill</h3>
-                            <p class="price">$25/day</p>
-                            <p class="description">High quality Black+Decker cordless drill that can be used for any drilling tasks.</p>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="product-details.html">
-                    <div class="listing-card">
-                        <img class="" src="img/lawn mower.jpg" alt="BLIT HARD Gas Lawn Mower">
-                        <div class="listing-details">
-                            <h3>BILT HARD Gas Lawn Mower 20 inch</h3>
-                            <p class="price">$40/day</p>
-                            <p class="description">20-inch gas-powered push mower can be used for lawncare</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2025 Rent-A-Tool. All rights reserved</p>
-    </footer>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
