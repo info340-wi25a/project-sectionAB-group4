@@ -57,15 +57,15 @@ section {
 }
 
 .my-listings-page {
-    padding: 20px; /* Adds space around the content */
-    max-width: 1200px; /* Prevents content from stretching too wide */
-    margin: 0 auto; /* Centers the content */
+    padding: 20px; 
+    max-width: 1200px; 
+    margin: 0 auto; 
 }
 
 .my-rentings-page {
-    padding: 20 px; /* Adds space around the content */
-    max-width: 1200px; /* Prevents content from stretching too wide */
-    margin: 0 auto; /* Centers the content */
+    padding: 20px; 
+    max-width: 1200px; 
+    margin: 0 auto;
 }
 
 .header-listings h1{
@@ -132,7 +132,44 @@ section {
     max-width: 30px;
     max-height: 30px;
 }
+ 
+/* for mobile */
+@media only screen and (max-width: 600px) {
+    .tool-name h3 {
+        font-size: 12px;
+    }
+    .tool-desc p {
+        font-size: 10px;
+    }
 
+    .tool-details {
+        font-size: 10px;
+    }
+
+    #my-listings h1 {
+        font-size: 20px;
+    }
+
+    .header-rentings h1 {
+        font-size: 20px;
+    }
+
+    .current-bookings h2 {
+        font-size: 18px;
+    }
+
+    .pending-bookings h2 {
+        font-size: 18px;
+    }
+
+    .booking-history h2 {
+        font-size: 18px;
+    }
+
+    .active-listings h2 {
+        font-size: 18px;
+    }
+}
 
 
 /* tool-details and booking-details styling */
