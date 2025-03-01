@@ -1,12 +1,12 @@
 import React from "react";
-import "../css/styles.css"
+import "../index.css"
 import arc_welding from "../assets/img/arc_welding_machine.jpg" 
 import power_washer from "../assets/img/power-washer.jpg"
 import power_drill from "../assets/img/power-drill.jpg"
 import lawn_mower from "../assets/img/lawn-mower.jpg"
 import sander from "../assets/img/sander.jpg"
 import angle_grinder from "../assets/img/angle-grinder.jpg"
-import OptionComponent from "../components/options";
+import OptionComponent from "./options";
 
 function UserListings() {
     return(

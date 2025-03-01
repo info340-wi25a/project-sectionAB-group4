@@ -1,10 +1,10 @@
 import React from "react";
-import "../css/styles.css"
+import "../index.css"
 import wet_vacuum from "../assets/img/wet-vacuum.jpg"
 import power_drill2 from "../assets/img/power-drill2.jpg"
 import electric_saw from "../assets/img/electric-saw.jpg"
 import concrete_saw from "../assets/img/concrete-saw.jpg"
-import OptionComponent from "../components/options";
+import OptionComponent from "./options";
 
 function UserRentings() {
     return(
