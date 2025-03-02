@@ -1,0 +1,176 @@
+/* General Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f3f3f3;
+  line-height: 1.6;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* NavBar Styles (MOBILE-FIRST)*/
+.navbar {
+  display: flex;
+  flex-direction: column; /* Stack Items Vertically on mobile */
+  align-items: center;
+  background-color: #0078D4;
+  padding: 15px 10px;
+  color: white;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column; /* S[ace between logo and links */
+  width: 100%;
+  align-items: center;
+  list-style: none;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 10px 15px;
+  width: 100%;
+  text-align: center;
+  transition: background 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile Toggle Button (Hamburger Menu) */
+.menu-toggle {
+  display: block;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px 10px;
+  margin-top: 10px;
+}
+
+/* Hide menu links by default on mobile */
+.nav-links {
+  display: none;
+}
+
+/* Show links when menu is active */
+.nav-links.active {
+  display: flex;
+}
+
+
+/* Call To Action (CTA) Button Styles */
+.cta {
+  display: flex;
+  flex-direction: column; /* Stack buttons on mobile */
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.cta .btn {
+  padding: 10px 20px;
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 5px;
+  width: 90%;
+  text-align: center;
+  font-weight: bold;
+  transition: background 0.3s ease-in-out;
+}
+
+.btn {
+  background: #333333;
+  color: white;
+}
+
+.btn:hover {
+  color: #333333;
+  background: white;
+}
+
+.btn-primary {
+  background: #0078D4;
+  color: white;
+}
+
+.btn-primary:hover {
+  color: #005EA6;
+  background: #f3f3f3;
+}
+
+/* Footer Styles (Mobile-First) */
+footer {
+  text-align: center;
+  background-color: #0078D4;
+  color: white;
+  padding: 15px 0;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+/* Media Queries for Tablet & Desktop */
+@media (min-width: 768px) {
+  .navbar {
+    flex-direction: row; /* Align items in a row on larger screens */
+    justify-content: space-between;
+    padding: 15px 20px;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+  }
+
+  .nav-link {
+    padding: 10px 15px;
+    font-size: 1rem;
+    width: auto;
+  }
+
+  /* Hide the mobile menu button */
+  .menu-toggle {
+    display: none;
+  }
+
+  .cta {
+    flex-direction: row; /* Align CTA buttons horizontally on desktop */
+    width: auto;
+  }
+
+  .cta .btn {
+    width: auto;
+    padding: 10px 15px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nav-link {
+    font-size: 1.1rem;
+    padding: 12px 20px;
+  }
+
+  footer {
+    font-size: 1rem;
+    padding: 20px 0;
+  }
+}
