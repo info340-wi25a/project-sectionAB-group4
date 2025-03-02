@@ -6,6 +6,8 @@ import SAMPLE_TOOLS from '../data/sample_tools.json';
 import HomePage from './HomePage'
 import UserListings from './user-listings'
 import UserRentings from './user-rentings'
+import BookingDetails from './booking-details'
+import ToolDetails from './tool-details'
 
 function App(props) {
   return (
@@ -21,8 +23,8 @@ function App(props) {
         <Route path="/user-listings" element={<UserListings/>}></Route>
         <Route path="/user-rentings" element={<UserRentings/>}></Route>
         <Route path="/create-listings" element={<h1>Create Listings</h1>}></Route>
-        <Route path="/booking-details" element={<h1>Booking Details</h1>}></Route>
-        <Route path="/tool-details" element={<h1>Tool Details</h1>}></Route>
+        <Route path="/booking-details" element={<BookingDetails/>}></Route>
+        <Route path="/tool-details" element={<ToolDetails />}></Route>
       </Routes>
 
       <Footer />

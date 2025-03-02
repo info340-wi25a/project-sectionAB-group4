@@ -138,18 +138,21 @@ section {
 /* tool-details and booking-details styling */
 .tool-details-container {
     display: flex;
+    flex-direction: column;
     width: 100vw;
-    height: 100vh;
+    height: auto;
+    padding: 20px;
 }
 
 .tool-img-large {
-    flex-grow: 2;
+    flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     background-color: lightgray;
-    height: 100%;
+    height: 200px;
+    max-width: 100%;
 }
 
 .tool-img-large img {
@@ -161,7 +164,7 @@ section {
 .tool-info {
     flex-grow: 1;
     background-color: white;
-    padding: 30px;
+    padding: 15px 20px;
     align-items: center;
 }
 
@@ -176,8 +179,19 @@ button {
 
 .booking-details-container {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
     height: 100vh;
+    align-items: stretch;
+    gap: 40px;
+}
+
+.left-column {
+    flex: 2;
+}
+
+.right-column {
+    flex: 1;
 }
 
 
@@ -193,6 +207,20 @@ button {
     padding-bottom: 20px;
     display: flex;
     justify-content: space-around;
+}
+
+.header-section {
+    padding-left: 30px;
+}
+
+.tool-name-desc {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items:center;
+    height: 200px;
+    width: 20%;
+    padding-left: 30px;
 }
 
 
@@ -462,6 +490,7 @@ footer {
         padding: 1rem;
         font-size: 0.9rem;
     }
+
 }
 
 /* create-listing.html specific styling starts here */
@@ -508,3 +537,41 @@ footer {
 }
 
 
+@media (min-width: 768px) {
+    /* tool-details specific */
+    .tool-details-container {
+        display: flex;
+        flex-direction: row;
+        width: 100vw;
+        height: 80vh;
+    }
+    
+    .tool-img-large {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        background-color: lightgray;
+        height: 100%;
+        max-width: 50%;
+    }
+    
+    .tool-img-large img {
+        width: 70%;
+        height: 100%;
+        object-fit: contain;
+    }
+    
+    .tool-info {
+        flex-grow: 1;
+        background-color: white;
+        padding-left: 50px;
+        padding-top: 30px;
+        align-items: center;
+    }
+
+    .booking-details-container {
+        flex-direction: row;
+    }
+}

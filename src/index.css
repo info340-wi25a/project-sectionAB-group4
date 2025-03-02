@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-  }
+}
 
 html {
     margin: 0;
@@ -28,164 +28,305 @@ body {
 
 /* NavBar Styles (MOBILE-FIRST)*/
 .navbar {
-  display: flex;
-  flex-direction: column; /* Stack Items Vertically on mobile */
-  align-items: center;
-  background-color: #0078D4;
-  padding: 15px 10px;
-  color: white;
+    display: flex;
+    flex-direction: column;
+    /* Stack Items Vertically on mobile */
+    align-items: center;
+    background-color: #0078D4;
+    padding: 15px 10px;
+    color: white;
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: white;
-  text-decoration: none;
-  margin-bottom: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 10px;
 }
 
 .nav-links {
-  display: flex;
-  flex-direction: column; /* S[ace between logo and links */
-  width: 100%;
-  align-items: center;
-  list-style: none;
+    display: flex;
+    flex-direction: column;
+    /* S[ace between logo and links */
+    width: 100%;
+    align-items: center;
+    list-style: none;
 }
 
 .nav-link {
-  color: white;
-  text-decoration: none;
-  font-size: 1rem;
-  padding: 10px 15px;
-  width: 100%;
-  text-align: center;
-  transition: background 0.3s ease-in-out;
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 10px 15px;
+    width: 100%;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
 }
 
 .nav-link:hover {
-  background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.2);
 }
 
 /* Mobile Toggle Button (Hamburger Menu) */
 .menu-toggle {
-  display: block;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 5px 10px;
-  margin-top: 10px;
+    display: block;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-top: 10px;
 }
 
 /* Hide menu links by default on mobile */
 .nav-links {
-  display: none;
+    display: none;
 }
 
 /* Show links when menu is active */
 .nav-links.active {
-  display: flex;
+    display: flex;
 }
 
 
 /* Call To Action (CTA) Button Styles */
 .cta {
-  display: flex;
-  flex-direction: column; /* Stack buttons on mobile */
-  align-items: center;
-  width: 100%;
-  gap: 10px;
-  margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    /* Stack buttons on mobile */
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 .cta .btn {
-  padding: 10px 20px;
-  text-decoration: none;
-  font-size: 1rem;
-  border-radius: 5px;
-  width: 90%;
-  text-align: center;
-  font-weight: bold;
-  transition: background 0.3s ease-in-out;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 5px;
+    width: 90%;
+    text-align: center;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out;
 }
 
 .btn {
-  background: #333333;
-  color: white;
+    background: #333333;
+    color: white;
 }
 
 .btn:hover {
-  color: #333333;
-  background: white;
+    color: #333333;
+    background: white;
 }
 
 .btn-primary {
-  background: #0078D4;
-  color: white;
+    background: #0078D4;
+    color: white;
 }
 
 .btn-primary:hover {
-  color: #005EA6;
-  background: #f3f3f3;
+    color: #005EA6;
+    background: #f3f3f3;
 }
 
 /* Footer Styles (Mobile-First) */
 footer {
-  text-align: center;
-  background-color: #0078D4;
-  color: white;
-  padding: 15px 0;
-  font-size: 0.9rem;
-  width: 100%;
+    text-align: center;
+    background-color: #0078D4;
+    color: white;
+    padding: 15px 0;
+    font-size: 0.9rem;
+    width: 100%;
 }
+
+/* tool-details and booking-details styling */
+.tool-details-container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: auto;
+    padding: 20px;
+}
+
+.tool-img-large {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: lightgray;
+    height: 200px;
+    max-width: 100%;
+}
+
+.tool-img-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.tool-info {
+    flex-grow: 1;
+    background-color: white;
+    padding: 15px 20px;
+    align-items: center;
+}
+
+button {
+    padding: 12px 20px;
+    background-color: #0078d4;
+    color: white;
+    font-size: 16px;
+    border: none;
+    width: 200px;
+}
+
+.booking-details-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    height: 100vh;
+    align-items: stretch;
+    gap: 40px;
+}
+
+.left-column {
+    flex: 1;
+}
+
+.right-column {
+    flex: 1;
+}
+
+
+.paying {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.calendar {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.header-section {
+    padding-left: 30px;
+}
+
+.tool-name-desc {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 20%;
+    padding-left: 30px;
+}
+
+
+
+
+
+
+
 
 /* Media Queries for Tablet & Desktop */
 @media (min-width: 768px) {
-  .navbar {
-    flex-direction: row; /* Align items in a row on larger screens */
-    justify-content: space-between;
-    padding: 15px 20px;
-  }
+    .navbar {
+        flex-direction: row;
+        /* Align items in a row on larger screens */
+        justify-content: space-between;
+        padding: 15px 20px;
+    }
 
-  .nav-links {
-    display: flex;
-    flex-direction: row;
-    width: auto;
-  }
+    .nav-links {
+        display: flex;
+        flex-direction: row;
+        width: auto;
+    }
 
-  .nav-link {
-    padding: 10px 15px;
-    font-size: 1rem;
-    width: auto;
-  }
+    .nav-link {
+        padding: 10px 15px;
+        font-size: 1rem;
+        width: auto;
+    }
 
-  /* Hide the mobile menu button */
-  .menu-toggle {
-    display: none;
-  }
+    /* Hide the mobile menu button */
+    .menu-toggle {
+        display: none;
+    }
 
-  .cta {
-    flex-direction: row; /* Align CTA buttons horizontally on desktop */
-    width: auto;
-  }
+    .cta {
+        flex-direction: row;
+        /* Align CTA buttons horizontally on desktop */
+        width: auto;
+    }
 
-  .cta .btn {
-    width: auto;
-    padding: 10px 15px;
-  }
+    .cta .btn {
+        width: auto;
+        padding: 10px 15px;
+    }
+
+
+    /*Tool Details and Booking Details Specific */
+    .tool-details-container {
+        display: flex;
+        flex-direction: row;
+        width: 100vw;
+        height: 80vh;
+    }
+
+    .tool-img-large {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        background-color: lightgray;
+        height: 100%;
+        max-width: 50%;
+    }
+
+    .tool-img-large img {
+        width: 70%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .tool-info {
+        flex-grow: 1;
+        background-color: white;
+        padding-left: 50px;
+        padding-top: 30px;
+        align-items: center;
+    }
+
+    .booking-details-container {
+        flex-direction: row;
+    }
 }
 
 @media (min-width: 1024px) {
-  .nav-link {
-    font-size: 1.1rem;
-    padding: 12px 20px;
-  }
+    .nav-link {
+        font-size: 1.1rem;
+        padding: 12px 20px;
+    }
 
-  footer {
-    font-size: 1rem;
-    padding: 20px 0;
-  }
+    footer {
+        font-size: 1rem;
+        padding: 20px 0;
+    }
 }
 
 
@@ -238,7 +379,7 @@ section {
     margin: 0 auto;
 }
 
-.header-listings h1{
+.header-listings h1 {
     padding: 0;
     margin: 5px;
 }
@@ -246,10 +387,12 @@ section {
 .active-listings h2 {
     font-size: 20px;
 }
+
 .active-listings #active-listings {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
 .tool-img {
     flex: 0 0 auto;
     width: 120px;
@@ -302,11 +445,13 @@ section {
     max-width: 30px;
     max-height: 30px;
 }
+
 /* for mobile */
 @media only screen and (max-width: 600px) {
     .tool-name h3 {
         font-size: 12px;
     }
+
     .tool-desc p {
         font-size: 10px;
     }
@@ -342,70 +487,6 @@ section {
 
 
 
-/* tool-details and booking-details styling */
-.tool-details-container {
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-}
-
-.tool-img-large {
-    flex-grow: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    background-color: lightgray;
-    height: 100%;
-}
-
-.tool-img-large img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.tool-info {
-    flex-grow: 1;
-    background-color: white;
-    padding: 30px;
-    align-items: center;
-}
-
-button {
-    padding: 12px 20px;
-    background-color: #0078d4;
-    color: white;
-    font-size: 16px;
-    border:none;
-    width: 200px;
-}
-
-.booking-details-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-}
-
-
-.paying {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    display:flex;
-    flex-direction: column;
-}
-
-.calendar {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    display: flex;
-    justify-content: space-around;
-}
-
-
-
-
-
 
 
 
@@ -438,7 +519,8 @@ button {
 }
 
 /* dropdown inputs */
-.filter input, .filter select {
+.filter input,
+.filter select {
     width: 100%;
     padding: 8px;
     font-size: 14px;
@@ -536,5 +618,3 @@ button {
         justify-content: flex-start;
     }
 }
-
->>>>>>> e32157fc59d817cffe03c2c19b72447e11805fef
