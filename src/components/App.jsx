@@ -20,13 +20,14 @@ function App(props) {
 
       {/* Routes Defined Here */}
       <Routes>
-        <Route path="/" element={<HomePage tools={SAMPLE_TOOLS} />}></Route>
+        <Route path="/home" element={<HomePage tools={SAMPLE_TOOLS} />}></Route>
         <Route path="/browse-tools" element={<HomePage tools={SAMPLE_TOOLS} />}></Route>
         <Route path="/user-listings" element={<UserListings />}></Route>
         <Route path="/user-rentings" element={<UserRentings />}></Route>
         <Route path="/create-listings" element={<CreateListing />}></Route>
         <Route path="/booking-details" element={<BookingDetails />}></Route>
         <Route path="/tool-details" element={<ToolDetails />}></Route>
+        <Route path="*" element={<Navigate to="/home"/>}></Route>
       </Routes>
 
       <Footer />

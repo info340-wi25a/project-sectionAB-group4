@@ -6,14 +6,14 @@ export function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
     <nav className='navbar'>
-      <a href='index.html' className='logo'>Rent-A-Tool</a>
+      <NavLink to="/home" className='logo'>Rent-A-Tool</NavLink>
 
       {/* Mobile Toggle Button- MenuToggle Component*/}
       <MenuToggle menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
       {/* Apply 'active' class when menuOpen is true */}
       <ul className={menuOpen ? "nav-links active" : "nav-links"}>
-        <li><NavLink to="/" className="nav-link">Browse Tools</NavLink></li>
+        <li><NavLink to="/browse-tools" className="nav-link">Browse Tools</NavLink></li>
         <li><NavLink to="/user-listings" className="nav-link">Your Listings</NavLink></li>
         <li><NavLink to="/user-rentings" className="nav-link">Your Rentings</NavLink></li>
         <li><NavLink to="/create-listings" className="nav-link">Create Listings</NavLink></li>
