@@ -6,6 +6,7 @@ export function CreateListing() {
     price: "",
     location: "",
     pictures: [],
+    category: ""
   });
 
   const handleSubmit = (event) => {
@@ -17,7 +18,8 @@ export function CreateListing() {
       title: form.title.value,
       price: form.price.value,
       location: form.location.value,
-      pictures: form.pictures.files
+      pictures: form.pictures.files,
+      category: form.category.value
     };
 
     setFormData(newListing); // Update state only on submit
@@ -48,6 +50,19 @@ export function CreateListing() {
 
             <label htmlFor="listing-location">Location:</label>
             <input type="text" id="listing-location" name="location" placeholder="Enter city or address" required/>
+
+            <label htmlFor="category">Category:</label>
+            <select id="category" name="category" value={formData.category.value} required className="category-dropdown">
+              <option value="">Select a category</option>
+              <option value="power-tools">Power Tools</option>
+              <option value="hand-tools">Hand Tools</option>
+              <option value="automotive">Automotive</option>
+              <option value="gardening">Gardening</option>
+              <option value="construction">Construction</option>
+              <option value="plumbing">Plumbing</option>
+              <option value="electrical">Electrical</option>
+              <option value="miscellaneous">Miscellaneous</option>
+            </select>
 
             <button type="submit" id="submit-listing-btn" className="btn-primary">Submit Listing</button>
           </fieldset>

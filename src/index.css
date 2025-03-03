@@ -650,6 +650,22 @@ button {
     box-shadow: 0px 0px 8px rgba(0, 123, 255, 0.3);
 }
 
+.category-dropdown {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: white;
+    transition: border-color 0.2s ease-in-out;
+}
+
+.category-dropdown:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0px 0px 8px rgba(0, 123, 255, 0.3);
+}
+
 /* Submit Button */
 #submit-listing-btn {
     background-color: #007bff;
