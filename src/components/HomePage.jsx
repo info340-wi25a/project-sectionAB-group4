@@ -30,15 +30,14 @@ function ToolCard(props) {
     const tool = props.tool;
     return (
         // <Link to={`/tools/${tool.name}`}>
-            <div className='listing-card'>
-                <img src={tool.image} alt={tool.name} />
-                <div className='listing-details'>
-                    <h3>{tool.name}</h3>
-                    <p className='price'>{`$${tool.price}/day`}</p>
-                    <p className='description'>{tool.description}</p>
-                </div>
+        <Link to={'/tool-details'} className='listing-card'>
+            <img src={tool.image} alt={tool.name} />
+            <div className='listing-details'>
+                <h3>{tool.name}</h3>
+                <p className='price'>{`$${tool.price}/day`}</p>
+                <p className='description'>{tool.description}</p>
             </div>
-        // </Link>
+         </Link>
     );
 }
 
