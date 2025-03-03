@@ -488,6 +488,8 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.2s ease-in-out;
+    display: block;
+    margin: 0 auto;
 }
 
 .filter-container button:hover {
@@ -552,13 +554,19 @@ button {
         flex-direction: column;
     }
 
+
+
     .filter-section {
         width: 100%;
         box-shadow: none;
     }
 
     .marketplace {
-        justify-content: flex-start;
+        justify-content: center;
+    }
+
+    .listing-card {
+        width: 100%;
     }
 }
 
