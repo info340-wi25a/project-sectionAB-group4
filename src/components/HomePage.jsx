@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Filter from "./Filter";
 import SAMPLE_TOOLS from "../data/sample_tools.json"; // Import directly
+import { Link } from "react-router";
 
 export default function HomePage() {
   const [filteredTools, setFilteredTools] = useState(SAMPLE_TOOLS);

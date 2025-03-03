@@ -25,6 +25,22 @@ function Filter({ onFilterApply }) {
     onFilterApply(filterValues);
   };
 
+  const handleReset = (event) => {
+    setKeyword("");
+    setLocation("");
+    setMinPrice(0);
+    setMaxPrice(Infinity);
+    setCategory("all");
+
+    onFilterApply({
+      keyword: "",
+      location: "",
+      minPrice: 0,
+      maxPrice: Infinity,
+      category: "all",
+    });
+  }
+
   return (
     <div className="filter-section">
       <h2>Apply Filters</h2>
@@ -99,7 +115,7 @@ function Filter({ onFilterApply }) {
         </div>
 
         <button type="button" onClick={handleSubmit}>Apply Filters</button>
-        <button type="button" onClick={() => onFilterApply({ keyword: "", location: "", minPrice: 0, maxPrice: Infinity, category: "all" })}>Reset Filters</button>
+        <button type="button" onClick={handleReset}>Reset Filters</button>
       </form>
     </div>
   );
