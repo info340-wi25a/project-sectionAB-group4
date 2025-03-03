@@ -22,7 +22,7 @@ function ToolImage() {
 
 function ToolInfo() {
     return (
-        <div class="tool-info">
+        <div className="tool-info">
             <h1>Tool Details</h1>
             <h2>ARC Welding Machine</h2>
             <p className="tool-price" id="tool-price">$34/day</p>
