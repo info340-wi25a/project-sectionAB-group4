@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import SAMPLE_TOOLS from '../data/sample_tools.json';
 import HomePage from './HomePage'
 import UserListings from './user-listings'
 import UserRentings from './user-rentings'
@@ -9,7 +8,7 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="home" element={<HomePage tools={SAMPLE_TOOLS}/>}/>
+        <Route path="home" element={<HomePage />} />
         <Route path="user-listing" element={<UserListings/>}/>
         <Route path="user-renting" element={<UserRentings/>}/>
       </Routes>

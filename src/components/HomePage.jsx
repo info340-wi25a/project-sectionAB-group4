@@ -1,84 +1,67 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React, { useState, useEffect } from "react";
+import Filter from "./Filter";
+import SAMPLE_TOOLS from "../data/sample_tools.json"; // Import directly
 
-export default function HomePage(props) {
-    return (
-        <div className='main-page-container'>
-            <Filter />
-            <ToolList tools={props.tools} />
-        </div>
-    )
+export default function HomePage() {
+  const [filteredTools, setFilteredTools] = useState(SAMPLE_TOOLS);
+
+  const applyFilters = (filters) => {
+    let filtered = [...SAMPLE_TOOLS];
+
+
+    // Keyword filtering
+    if (filters.keyword && filters.keyword.trim() !== "") {
+        filtered = filtered.filter((tool) =>
+            tool.name.toLowerCase().includes(filters.keyword.toLowerCase())
+        );
+    }
+
+    // Location filtering
+    if (filters.location && filters.location.trim() !== "") {
+      filtered = filtered.filter((tool) =>
+        tool.location.toLowerCase().includes(filters.location.toLowerCase())
+      );
+    }
+
+    // Price filtering
+    filtered = filtered.filter((tool) => tool.price >= filters.minPrice && tool.price <= filters.maxPrice);
+
+    // Category filtering
+    if (filters.category && filters.category !== "all") {
+      filtered = filtered.filter((tool) => tool.category === filters.category);
+    }
+
+    setFilteredTools(filtered);
+  };
+
+  return (
+    <div className="main-page-container">
+      <Filter onFilterApply={applyFilters} />
+      <ToolList tools={filteredTools} />
+    </div>
+  );
 }
 
-function ToolList(props) {
-    const tools = props.tools || [];
-    let toolCards = tools.map((tool) => {
-        return <ToolCard key={tool.name} tool={tool} />;
-    });
-
-    return (
-        <div id='browse-tools' className='browse-section'>
-            <h1>Browse Tools</h1>
-            <div className='marketplace'>
-                {toolCards || 'No tools found'}
-            </div>
-        </div>
-    );
+function ToolList({ tools }) {
+  return (
+    <div id="browse-tools" className="browse-section">
+      <h1>Browse Tools</h1>
+      <div className="marketplace">
+        {tools.length > 0 ? tools.map((tool) => <ToolCard key={tool.name} tool={tool} />) : "No tools found"}
+      </div>
+    </div>
+  );
 }
 
-function ToolCard(props) {
-    const tool = props.tool;
-    return (
-        // <Link to={`/tools/${tool.name}`}>
-            <div className='listing-card'>
-                <img src={tool.image} alt={tool.name} />
-                <div className='listing-details'>
-                    <h3>{tool.name}</h3>
-                    <p className='price'>{`$${tool.price}/day`}</p>
-                    <p className='description'>{tool.description}</p>
-                </div>
-            </div>
-        // </Link>
-    );
-}
-
-function Filter() {
-    return (
-        <div className='filter-section'>
-        <h2>Apply Filters</h2>
-            <form className='filter-container'>
-                <div className='filter'>
-                    <label for="location">Location:</label>
-                    <input type="text" id="location" name="location" placeholder="Enter City" />
-                </div>
-
-                <div className='filter'>
-                    <label for="min-price">Minimum Price ($):</label>
-                    <input type="number" id="min-price" name="min-price" placeholder="e.g. 10"/>
-                </div>
-
-                <div className='filter'>
-                    <label for="max-price">Maximum Price ($):</label>
-                    <input type="number" id="max-price" name="max-price" placeholder="e.g. 100"/>
-                </div>
-
-                <div className='filter'>
-                    <label for="category">Category:</label>
-                    <select id="category" name="category">
-                        <option value="all">All</option>
-                        <option value="power-tools">Power Tools</option>
-                        <option value="hand-tools">Hand Tools</option>
-                        <option value="automotive">Automotive</option>
-                        <option value="gardening">Gardening</option>
-                        <option value="construction">Construction</option>
-                        <option value="plumbing">Plumbing</option>
-                        <option value="electrical">Electrical</option>
-                        <option value="miscellaneous">Miscellaneous</option>
-                    </select>
-                </div>
-
-                <button type="submit">Apply Filters</button>
-            </form>
-        </div>
-    )
+function ToolCard({ tool }) {
+  return (
+    <div className="listing-card">
+      <img src={tool.image} alt={tool.name} />
+      <div className="listing-details">
+        <h3>{tool.name}</h3>
+        <p className="price">{`$${tool.price}/day`}</p>
+        <p className="description">{tool.description}</p>
+      </div>
+    </div>
+  );
 }
