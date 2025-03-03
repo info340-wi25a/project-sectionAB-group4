@@ -1,5 +1,7 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html {
@@ -19,6 +21,212 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
+}
+
+
+/* NAVBAR AND FOOTER STYLES - AKHIL */
+
+/* NavBar Styles (MOBILE-FIRST)*/
+.navbar {
+    display: flex;
+    flex-direction: column;
+    /* Stack Items Vertically on mobile */
+    align-items: center;
+    background-color: #0078D4;
+    padding: 15px 10px;
+    color: white;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column; /* Space between logo and links */
+  width: 100%;
+  align-items: center;
+  list-style: none;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 10px 15px;
+    width: 100%;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile Toggle Button (Hamburger Menu) */
+.menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-top: 10px;
+}
+
+/* Hide menu links by default on mobile */
+.nav-links {
+    display: none;
+}
+
+.nav-links.active {
+    display: flex;
+}
+
+
+/* Call To Action Button Styles */
+.cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.cta .btn {
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 5px;
+    width: 90%;
+    text-align: center;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out;
+}
+
+.btn {
+    background: #333333;
+    color: white;
+}
+
+.btn:hover {
+    color: #333333;
+    background: white;
+}
+
+.btn-primary {
+    background: #0078D4;
+    color: white;
+}
+
+.btn-primary:hover {
+    color: #005EA6;
+    background: #f3f3f3;
+}
+
+/* Footer Styles (Mobile-First) */
+footer {
+    text-align: center;
+    background-color: #0078D4;
+    color: white;
+    padding: 15px 0;
+    font-size: 0.9rem;
+    width: 100%;
+}
+
+
+/* Media Queries for Tablet & Desktop */
+@media (min-width: 768px) {
+    .navbar {
+        flex-direction: row;
+        /* Align items in a row on larger screens */
+        justify-content: space-between;
+        padding: 15px 20px;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: row;
+        width: auto;
+    }
+
+    .nav-link {
+        padding: 10px 15px;
+        font-size: 1rem;
+        width: auto;
+    }
+
+    /* Hide the mobile menu button */
+    .menu-toggle {
+        display: none;
+    }
+
+    .cta {
+        flex-direction: row;
+        /* Align CTA buttons horizontally on desktop */
+        width: auto;
+    }
+
+    .cta .btn {
+        width: auto;
+        padding: 10px 15px;
+    }
+
+
+    /*Tool Details and Booking Details Specific */
+    .tool-details-container {
+        display: flex;
+        flex-direction: row;
+        width: 100vw;
+        height: 80vh;
+    }
+
+    .tool-img-large {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        background-color: lightgray;
+        height: 100%;
+        max-width: 50%;
+    }
+
+    .tool-img-large img {
+        width: 70%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .tool-info {
+        flex-grow: 1;
+        background-color: white;
+        padding-left: 50px;
+        padding-top: 30px;
+        align-items: center;
+    }
+
+    .booking-details-container {
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 1024px) {
+    .nav-link {
+        font-size: 1.1rem;
+        padding: 12px 20px;
+    }
+
+    footer {
+        font-size: 1rem;
+        padding: 20px 0;
+    }
 }
 
 h1 {
@@ -45,30 +253,19 @@ p {
     color: #787878;
 }
 
-section {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    margin-bottom: 20px;
-    padding: 5px;
-    border-radius: 8px;
-    max-width: 1000px;
-    max-height: 250px;
-}
-
 .my-listings-page {
-    padding: 20px; 
-    max-width: 1200px; 
-    margin: 0 auto; 
-}
-
-.my-rentings-page {
-    padding: 20px; 
-    max-width: 1200px; 
+    padding: 20px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-.header-listings h1{
+.my-rentings-page {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header-listings h1 {
     padding: 0;
     margin: 5px;
 }
@@ -76,10 +273,12 @@ section {
 .active-listings h2 {
     font-size: 20px;
 }
+
 .active-listings #active-listings {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
 .tool-img {
     flex: 0 0 auto;
     width: 120px;
@@ -132,11 +331,13 @@ section {
     max-width: 30px;
     max-height: 30px;
 }
+
 /* for mobile */
 @media only screen and (max-width: 600px) {
     .tool-name h3 {
         font-size: 12px;
     }
+
     .tool-desc p {
         font-size: 10px;
     }
@@ -232,13 +433,6 @@ button {
     justify-content: space-around;
 }
 
-
-
-
-
-
-
-
 /* index.html specific styling starts here */
 .main-page-container {
     display: flex;
@@ -268,7 +462,8 @@ button {
 }
 
 /* dropdown inputs */
-.filter input, .filter select {
+.filter input,
+.filter select {
     width: 100%;
     padding: 8px;
     font-size: 14px;
@@ -367,181 +562,187 @@ button {
     }
 }
 
-
-/* Header & Navbar */
-header {
-    background-color: #ffffff;
-    padding: 1rem 2rem;
-    border-bottom: 3px solid #0078D4;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    font-size: 2rem;
-    color: #0078D4;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-  /* Navigation Links */
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-}
-
-.nav-link {
-    color: #333333;
-    text-decoration: none;
-    font-size: 1rem;
-    border-bottom: 2px solid transparent;
-    transition: all 0.3s ease-in-out;
-}
-
-.nav-link:hover {
-    color: #0078D4;
-    border-bottom: 2px solid #0078D4;
-}
-
-/* CTA Buttons */
-.cta .btn {
-    padding: 0.7rem 1.5rem;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: 0.3s ease-in-out;
-}
-
-.btn {
-    background: #333333;
-    color: #ffffff;
-}
-
-.btn:hover {
-    background: #0078D4;
-    color: #ffffff;
-}
-
-.btn-primary {
-    background: #0078D4;
-    color: #ffffff;
-}
-
-.btn-primary:hover {
-    background: #005EA6;
-}
-
-/* Footer */
-footer {
-    background: #ffffff;
-    color: #666666;
-    text-align: center;
-    padding: 1.5rem 0;
-    border-top: 3px solid #0078D4;
-}
-
-@media (max-width: 768px) {
-    /* Navbar & Header */
-    header {
-        padding: 1rem;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .logo {
-        font-size: 1.8rem;
-        margin-bottom: 0.5rem;
-    }
-
-    /* Navigation Links- Covert to Column layout */
-    .nav-links {
-        flex-direction: column;
-        gap: 1rem;
-        align-items: center;
-        width: 100%;
-        padding: 0;
-    }
-
-    .nav-links li {
-        display: block;
-        width: 100%;
-        text-align: center;
-    }
-
-    .nav-link {
-        display: block;
-        padding: 0.8rem 1rem;
-        width: 100%;
-        font-size: 1rem;
-    }
-
-    /* CTA Buttons- Stack for Mobile */
-    .cta {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        margin-top: 1rem;
-    }
-
-    .cta .btn {
-        width: 90%;
-        text-align: center;
-        padding: 0.8rem;
-        margin: 0.5rem 0;
-        font-size: 1rem;
-    }
-
-    footer {
-        padding: 1rem;
-        font-size: 0.9rem;
-    }
-}
-
-/* create-listing.html specific styling starts here */
+/* Create Listing Page Styles */
 .create-listing {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    background-color: #F4F4F4;
+    padding: 30px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
 }
 
 /* Page Header */
-#create-lisiting-header {
+#create-listing-header {
     background-color: #ffffff;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
 }
 
 .header-listings h1 {
-    font-size: 2rem;
-    color: #333333;
-    margin: 10px 0;
+    font-size: 2.5rem;
+    color: #333;
+    font-weight: 600;
+    margin: 0;
 }
 
 /* Form Section */
 #create-listing-form-section {
     width: 100%;
-    max-width: 800px;
-    background-color: white;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: center;
+    transition: all 0.3s ease-in-out;
+}
+
+#create-listing-form-section:hover {
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Elements */
+#create-listing-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 #create-listing-form fieldset {
+    border: none;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    background-color: white;
+    gap: 15px;
+    width: 100%;
 }
 
+/* Form Labels */
+#create-listing-form label {
+    font-weight: 500;
+    font-size: 1rem;
+    color: #444;
+}
+
+/* Input Fields */
+#create-listing-form input[type="text"],
+#create-listing-form input[type="number"],
+#create-listing-form input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+}
+
+#create-listing-form input[type="text"]:focus,
+#create-listing-form input[type="number"]:focus,
+#create-listing-form input[type="file"]:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0px 0px 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Submit Button */
+#submit-listing-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-top: 15px;
+}
+
+#submit-listing-btn:hover {
+    background-color: #0056b3;
+    box-shadow: 0px 4px 12px rgba(0, 123, 255, 0.2);
+}
+
+/* Media Queries for Tablet & Desktop */
+@media screen and (min-width: 768px) {
+    .create-listing {
+        padding: 40px;
+    }
+
+    #create-listing-header {
+        max-width: 700px;
+        padding: 25px;
+    }
+
+    .header-listings h1 {
+        font-size: 2.7rem;
+    }
+
+    #create-listing-form-section {
+        max-width: 700px;
+        padding: 25px;
+    }
+
+    #create-listing-form input {
+        padding: 14px;
+        font-size: 1.1rem;
+    }
+
+    #submit-listing-btn {
+        font-size: 1.2rem;
+        padding: 14px;
+    }
+}
+
+/* Media Queries for Desktop large screens*/
+@media screen and (min-width: 1024px) {
+    .create-listing {
+        padding: 50px;
+    }
+
+    #create-listing-header {
+        max-width: 800px;
+        padding: 30px;
+    }
+
+    .header-listings h1 {
+        font-size: 3rem;
+    }
+
+    #create-listing-form-section {
+        max-width: 800px;
+        padding: 30px;
+    }
+
+    #create-listing-form {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    #create-listing-form fieldset {
+        flex: 1;
+        min-width: 45%;
+    }
+
+    #create-listing-form input {
+        padding: 15px;
+        font-size: 1.2rem;
+    }
+
+    #submit-listing-btn {
+        font-size: 1.3rem;
+        padding: 16px;
+        width: 100%;
+        max-width: 300px;
+        align-self: center;
+    }
+}
 

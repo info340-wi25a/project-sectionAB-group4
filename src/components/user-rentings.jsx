@@ -9,24 +9,6 @@ import OptionComponent from "./options";
 function UserRentings() {
     return(
         <div>
-            <header>
-                <nav className="navbar">
-                    <a href="index.html" className="logo">Rent-A-Tool</a>
-                    <ul className="nav-links">
-                        <li><a href="index.html#browse-tools" className="nav-link">Browse Tools</a></li>
-                        <li><a href="user-listings.html" className="nav-link">Your Listings</a></li>
-                        <li><a href="user-rentings.html" className="nav-link">Your Rentings</a></li>
-                        <li><a href="create-listing.html" className="nav-link">Create Listings</a></li>
-                    </ul>
-
-                    <div className="cta">
-                        <a id="login-link" href="login.html" className="btn">Login</a>
-                        <a id="signup-link" href="signup.html" className="btn btn-primary">Sign Up</a>
-                        <a id="logout-link" href="logout.html" className="btn">Log Out</a>
-                    </div>
-                </nav>
-            </header>
-
             <div className ="my-rentings-page">
                 <div className="my-rentings">
                     <section id="my-rentings">
@@ -111,9 +93,6 @@ function UserRentings() {
                     </div>
                 </div>
             </div>
-            <footer>
-                <p>&copy; 2025 Rent-A-Tool. All rights reserved</p>
-            </footer>
         </div>
     )
 }

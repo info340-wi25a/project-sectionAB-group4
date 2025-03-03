@@ -6,9 +6,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router";
 
-const root = document.getElementById("root");
+import './index.css';
 
-ReactDOM.createRoot(root).render(
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
   <BrowserRouter>
     <App />
   </BrowserRouter>

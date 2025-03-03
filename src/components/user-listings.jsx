@@ -1,6 +1,6 @@
 import React from "react";
 import "../index.css"
-import arc_welding from "../img/arc_welding_machine.jpg" 
+import arc_welding from "../img/arc_welding_machine.jpg"
 import power_washer from "../img/power-washer.jpg"
 import power_drill from "../img/power-drill.jpg"
 import lawn_mower from "../img/lawn-mower.jpg"
@@ -11,24 +11,6 @@ import OptionComponent from "./options";
 function UserListings() {
     return(
         <div>
-            <header>
-                <nav className="navbar">
-                    <a href="index.html" className="logo">Rent-A-Tool</a>
-                    <ul className="nav-links">
-                        <li><a href="index.html#browse-tools" className="nav-link">Browse Tools</a></li>
-                        <li><a href="user-listings.html" className="nav-link">Your Listings</a></li>
-                        <li><a href="user-rentings.html" className="nav-link">Your Rentings</a></li>
-                        <li><a href="create-listing.html" className="nav-link">Create Listings</a></li>
-                    </ul>
-
-                    <div className="cta">
-                        <a id="login-link" href="login.html" className="btn">Login</a>
-                        <a id="signup-link" href="signup.html" className="btn btn-primary">Sign Up</a>
-                        <a id="logout-link" href="logout.html" className="btn">Log Out</a>
-                    </div>
-                </nav>
-            </header>
-
             <div className="my-listings-page">
                 <div className="my-listings">
                     <section id="my-listings">
@@ -133,12 +115,8 @@ function UserListings() {
                     </div>
                 </div>
             </div>
-
-            <footer>
-                <p>&copy; 2025 Rent-A-Tool. All rights reserved</p>
-            </footer>
         </div>
     )
-} 
+}
 
 export default UserListings
