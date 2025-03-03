@@ -46,7 +46,7 @@ body {
 
 .nav-links {
   display: flex;
-  flex-direction: column; /* S[ace between logo and links */
+  flex-direction: column; /* Space between logo and links */
   width: 100%;
   align-items: center;
   list-style: none;
@@ -83,16 +83,15 @@ body {
   display: none;
 }
 
-/* Show links when menu is active */
 .nav-links.active {
   display: flex;
 }
 
 
-/* Call To Action (CTA) Button Styles */
+/* Call To Action Button Styles */
 .cta {
   display: flex;
-  flex-direction: column; /* Stack buttons on mobile */
+  flex-direction: column;
   align-items: center;
   width: 100%;
   gap: 10px;
@@ -139,6 +138,7 @@ footer {
   font-size: 0.9rem;
   width: 100%;
 }
+
 
 /* Media Queries for Tablet & Desktop */
 @media (min-width: 768px) {
@@ -188,9 +188,6 @@ footer {
   }
 }
 
-
-
-
 h1 {
     color: #333333;
     font-size: 2em;
@@ -213,17 +210,6 @@ h3 {
 p {
     font-size: 16px;
     color: #787878;
-}
-
-section {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    margin-bottom: 20px;
-    padding: 5px;
-    border-radius: 8px;
-    max-width: 1000px;
-    max-height: 250px;
 }
 
 .my-listings-page {
@@ -402,13 +388,6 @@ button {
     justify-content: space-around;
 }
 
-
-
-
-
-
-
-
 /* index.html specific styling starts here */
 .main-page-container {
     display: flex;
@@ -537,4 +516,189 @@ button {
     }
 }
 
->>>>>>> e32157fc59d817cffe03c2c19b72447e11805fef
+
+
+/* Create Listing Page Styles */
+.create-listing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+/* Page Header */
+#create-listing-header {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+}
+
+.header-listings h1 {
+    font-size: 2.5rem;
+    color: #333;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Form Section */
+#create-listing-form-section {
+    width: 100%;
+    max-width: 900px;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+}
+
+#create-listing-form-section:hover {
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Elements */
+#create-listing-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#create-listing-form fieldset {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+/* Form Labels */
+#create-listing-form label {
+    font-weight: 500;
+    font-size: 1rem;
+    color: #444;
+}
+
+/* Input Fields */
+#create-listing-form input[type="text"],
+#create-listing-form input[type="number"],
+#create-listing-form input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+}
+
+#create-listing-form input[type="text"]:focus,
+#create-listing-form input[type="number"]:focus,
+#create-listing-form input[type="file"]:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0px 0px 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Submit Button */
+#submit-listing-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-top: 15px;
+}
+
+#submit-listing-btn:hover {
+    background-color: #0056b3;
+    box-shadow: 0px 4px 12px rgba(0, 123, 255, 0.2);
+}
+
+/* Media Queries for Tablet & Desktop */
+@media screen and (min-width: 768px) {
+    .create-listing {
+        padding: 40px;
+    }
+
+    #create-listing-header {
+        max-width: 700px;
+        padding: 25px;
+    }
+
+    .header-listings h1 {
+        font-size: 2.7rem;
+    }
+
+    #create-listing-form-section {
+        max-width: 700px;
+        padding: 25px;
+    }
+
+    #create-listing-form input {
+        padding: 14px;
+        font-size: 1.1rem;
+    }
+
+    #submit-listing-btn {
+        font-size: 1.2rem;
+        padding: 14px;
+    }
+}
+
+/* Media Queries for Desktop large screens*/
+@media screen and (min-width: 1024px) {
+    .create-listing {
+        padding: 50px;
+    }
+
+    #create-listing-header {
+        max-width: 800px;
+        padding: 30px;
+    }
+
+    .header-listings h1 {
+        font-size: 3rem;
+    }
+
+    #create-listing-form-section {
+        max-width: 800px;
+        padding: 30px;
+    }
+
+    #create-listing-form {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    #create-listing-form fieldset {
+        flex: 1;
+        min-width: 45%;
+    }
+
+    #create-listing-form input {
+        padding: 15px;
+        font-size: 1.2rem;
+    }
+
+    #submit-listing-btn {
+        font-size: 1.3rem;
+        padding: 16px;
+        width: 100%;
+        max-width: 300px;
+        align-self: center;
+    }
+}
+
