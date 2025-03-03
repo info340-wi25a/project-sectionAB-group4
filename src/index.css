@@ -253,61 +253,87 @@ p {
     color: #787878;
 }
 
-.my-listings-page {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+/*User Renting and User Listing Styling (Kylie)*/
+/* Mobile-first styles (default) */
+h1 {
+    color: #333333;
+    margin-bottom: 10px;
 }
 
-.my-rentings-page {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.header-listings h1 {
-    padding: 0;
-    margin: 5px;
-}
-
-.active-listings h2 {
-    font-size: 20px;
-}
-
-.active-listings #active-listings {
+h2 {
+    color: #0078d4;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-.tool-img {
-    flex: 0 0 auto;
-    width: 120px;
-    height: 120px;
+h3 {
+    color: #333333;
+    padding: 0;
+    text-align: left;
+}
+
+p {
+    color: #787878;
+}
+
+.my-listings-page, .my-rentings-page {
+    padding: 20px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+
+#my-listings h1, .header-rentings h1 {
+    font-size: 20px;
+    padding: 0;
+    margin: 0px;
+}
+
+.active-listings h2, .current-bookings h2, .pending-bookings h2, .booking-history h2 {
+    font-size: 18px;
+}
+
+#tool-section{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: white;
 }
 
 .tool-img img {
+    flex: 0 0 auto;
     width: 100%;
     height: auto;
-    max-width: 120px;
-    max-height: 120px;
-    padding-right: 20px;
+    max-width: 70px;
+    max-height: 70px;
     object-fit: cover;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    margin-right: 20px;
 }
 
 .tool-details {
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 15px 30px;
+    font-size: 10px;
+    margin-left: 10px;
 }
 
 .tool-desc p {
+    font-size: 12px;
     padding: 0;
     margin: 0;
 }
 
 .tool-name h3 {
-    margin: auto;
+    font-size: 14px;
+    margin: 0px;
     padding: 0;
 }
 
@@ -317,60 +343,80 @@ p {
     display: flex;
     align-items: center;
     justify-content: right;
+    align-self: flex-start;
+    position: relative;
+    top: -5px;
 }
 
-.img-button {
-    border: none;
-    background: none;
-    padding-right: 0;
-    cursor: pointer;
-    justify-content: right;
-}
-
-.img-button img {
-    max-width: 30px;
-    max-height: 30px;
-}
-
-/* for mobile */
-@media only screen and (max-width: 600px) {
-    .tool-name h3 {
-        font-size: 12px;
+/* Tablet adjustments (min-width: 768px) */
+@media only screen and (min-width: 768px) {
+    #my-listings h1, .header-rentings h1 {
+        font-size: 24px;
+    }
+    
+    .active-listings h2, .current-bookings h2, .pending-bookings h2, .booking-history h2 {
+        font-size: 20px;
     }
 
     .tool-desc p {
-        font-size: 10px;
+        font-size: 14px;
+    }
+    
+    .tool-name h3 {
+        font-size: 16px;
     }
 
+    .tool-img {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .tool-img img {
+        max-width: 120px;
+        max-height: 120px;
+    }
+    
     .tool-details {
-        font-size: 10px;
-    }
-
-    #my-listings h1 {
-        font-size: 20px;
-    }
-
-    .header-rentings h1 {
-        font-size: 20px;
-    }
-
-    .current-bookings h2 {
-        font-size: 18px;
-    }
-
-    .pending-bookings h2 {
-        font-size: 18px;
-    }
-
-    .booking-history h2 {
-        font-size: 18px;
-    }
-
-    .active-listings h2 {
-        font-size: 18px;
+        font-size: 14px;
     }
 }
 
+/* Desktop adjustments (min-width: 1024px) */
+@media only screen and (min-width: 1024px) {
+    #my-listings h1, .header-rentings h1 {
+        font-size: 30px;
+    }
+    
+    .active-listings h2, .current-bookings h2, .pending-bookings h2, .booking-history h2 {
+        font-size: 26px;
+    }
+
+    .tool-desc p {
+        font-size: 16px;
+    }
+    
+    .tool-name h3 {
+        font-size: 18px;
+    }
+    
+    .my-listings-page, .my-rentings-page {
+        max-width: 1200px;
+    }
+    
+    .tool-container {
+        padding: 15px;
+        border-radius: 10px;
+    }
+    
+    .tool-details {
+        margin-left: 20px;
+    }
+    
+    .img-button img {
+        max-width: 30px;
+        max-height: 30px;
+    }
+}
 
 
 /* tool-details and booking-details styling */

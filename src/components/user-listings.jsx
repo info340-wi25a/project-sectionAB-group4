@@ -22,7 +22,7 @@ function UserListings() {
                         <section id="active-listings">
                             <h2>Active (6 Listings)</h2>
                         </section>
-                        <section id="tool-1">
+                        <section id="tool-section">
                             <div className="tool-img">
                                 <img src={arc_welding} style={{float: 'left'}} alt="ARC Welding Machine"/>
                             </div>
@@ -35,9 +35,11 @@ function UserListings() {
                                     <p>Rented</p>
                                 </div>
                             </div>
-                            <OptionComponent/>
+                            <div className="option">
+                                <OptionComponent/>
+                            </div>
                         </section>
-                        <section id="tool-2">
+                        <section id="tool-section">
                             <div className="tool-img">
                                 <img src={power_washer} style={{float: 'left'}} alt="Draper Pressure Washer"/>
                             </div>
@@ -52,7 +54,7 @@ function UserListings() {
                             </div>
                             <OptionComponent/>
                         </section>
-                        <section id="tool-3">
+                        <section id="tool-section">
                             <div className="tool-img">
                                 <img src={power_drill} style={{float: 'left'}} alt="BLACK+DECKER 20V Max Cordless Drill"/>
                             </div>
@@ -67,7 +69,7 @@ function UserListings() {
                             </div>
                             <OptionComponent/>
                         </section>
-                        <section id="tool-4">
+                        <section id="tool-section">
                             <div className="tool-img">
                                 <img src={lawn_mower} style={{float: 'left'}} alt="BILT HARD Gas Lawn Mower"/>
                             </div>
@@ -82,7 +84,7 @@ function UserListings() {
                             </div>
                             <OptionComponent/>
                         </section>
-                        <section id="tool-5">
+                        <section id="tool-section">
                             <div className="tool-img">
                                 <img src={sander} style={{float: 'left'}} alt="MIRKA Sander"/>
                             </div>
@@ -97,7 +99,7 @@ function UserListings() {
                             </div>
                             <OptionComponent/>
                         </section>
-                        <section id="tool-6">
+                        <section id="tool-section">
                             <div className="tool-img">
                                 <img src={angle_grinder} style={{float: 'left'}} alt="TOLSEN Angle Grinder"/>
                             </div>

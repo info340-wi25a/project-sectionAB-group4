@@ -20,7 +20,7 @@ function UserRentings() {
                         <section id="current-bookings">
                             <h2>Current (2 Bookings)</h2>
                         </section>
-                        <section id="rented-1">
+                        <section id="tool-section">
                             <div className="tool-img">
                                 <img src={wet_vacuum} style={{float: 'left'}} alt="Vacmaster 5 Gallon Wet/Dry Vacuum"/>
                             </div>
@@ -35,7 +35,7 @@ function UserRentings() {
                             </div>
                             <OptionComponent/>
                         </section>
-                        <section id="tool-2">
+                        <section id="tool-section">
                             <div className="tool-img">
                                 <img src={power_drill2} style={{float: 'left'}} alt="MPT Power Drill Pro"/>
                             </div>
@@ -55,7 +55,7 @@ function UserRentings() {
                         <section id="pending-bookings">
                             <h2>Pending (1 Booking)</h2>
                         </section>
-                        <section id="pending-1">
+                        <section id="tool-section">
                             <div className="tool-img">
                                 <img src={electric_saw} style={{float: 'left'}} alt="Bauer Circular Saw"/>
                             </div>
@@ -75,7 +75,7 @@ function UserRentings() {
                         <section id="booking-history">
                             <h2>History</h2>
                         </section>
-                        <section id="history-1">
+                        <section id="tool-section">
                             <div className="tool-img">
                                 <img src={concrete_saw} style={{float: 'left'}} alt="Neatoom Electric Concrete Saw"/>
                             </div>
