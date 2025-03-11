@@ -130,6 +130,29 @@ body {
     background: #f3f3f3;
 }
 
+/* User Tag Styling */
+.user-tag {
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    margin-right: 15px;
+}
+
+.btn.logout {
+    background: #d9534f;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.btn.logout:hover {
+    background: #c9302c;
+}
+
 /* Footer Styles (Mobile-First) */
 footer {
     text-align: center;
@@ -353,7 +376,7 @@ p {
     #my-listings h1, .header-rentings h1 {
         font-size: 24px;
     }
-    
+
     .active-listings h2, .current-bookings h2, .pending-bookings h2, .booking-history h2 {
         font-size: 20px;
     }
@@ -361,7 +384,7 @@ p {
     .tool-desc p {
         font-size: 14px;
     }
-    
+
     .tool-name h3 {
         font-size: 16px;
     }
@@ -370,12 +393,12 @@ p {
         width: 120px;
         height: 120px;
     }
-    
+
     .tool-img img {
         max-width: 120px;
         max-height: 120px;
     }
-    
+
     .tool-details {
         font-size: 14px;
     }
@@ -386,7 +409,7 @@ p {
     #my-listings h1, .header-rentings h1 {
         font-size: 30px;
     }
-    
+
     .active-listings h2, .current-bookings h2, .pending-bookings h2, .booking-history h2 {
         font-size: 26px;
     }
@@ -394,24 +417,24 @@ p {
     .tool-desc p {
         font-size: 16px;
     }
-    
+
     .tool-name h3 {
         font-size: 18px;
     }
-    
+
     .my-listings-page, .my-rentings-page {
         max-width: 1200px;
     }
-    
+
     .tool-container {
         padding: 15px;
         border-radius: 10px;
     }
-    
+
     .tool-details {
         margin-left: 20px;
     }
-    
+
     .img-button img {
         max-width: 30px;
         max-height: 30px;
