@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Filter from "./Filter";
-import SAMPLE_TOOLS from "../data/sample_tools.json"; // Import directly
 import { Link } from "react-router";
 
-export default function HomePage() {
-  const [filteredTools, setFilteredTools] = useState(SAMPLE_TOOLS);
+export default function HomePage({ tools }) {
+  const [filteredTools, setFilteredTools] = useState(tools);
 
   const applyFilters = (filters) => {
-    let filtered = [...SAMPLE_TOOLS];
+    let filtered = [...tools];
 
 
     // Keyword filtering
@@ -44,11 +43,16 @@ export default function HomePage() {
 }
 
 function ToolList({ tools }) {
+  // filter only tools that are available before creating cards
+  const availableTools = tools.filter((tool) => {
+    return tool.isAvailable;
+  });
+
   let toolCards = "No tools found";
-  if (tools.length > 0) {
-    toolCards = tools.map((tool) => <ToolCard key={tool.name} tool={tool} />);
+  if (availableTools.length > 0) {
+    toolCards = availableTools.map((tool) => <ToolCard key={tool.id} tool={tool} />);
   }
-  
+
   return (
     <div id="browse-tools" className="browse-section">
       <h1>Browse Tools</h1>
