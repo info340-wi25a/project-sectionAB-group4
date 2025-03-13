@@ -10,7 +10,7 @@ import BookingDetails from './booking-details'
 import ToolDetails from './tool-details'
 import Signup from './Signup';
 import Login from './Login';
-import { getDatabase, ref, onValue, push } from 'firebase/database';
+import { ref, onValue, push, set } from 'firebase/database';
 import { db } from '../main';
 
 function RequireAuth({ user }) {
@@ -21,14 +21,16 @@ function RequireAuth({ user }) {
   }
 }
 
-const addListing = (newListing) => {
-  const listingsRef = ref(db, 'listings');
-  listingsRef.push(newListing);
+const addListing =  async (newListing) => {
+  const newListingRef = push(ref(db, "listings"));
+  newListingWithId = { ...newListing, id: newListingRef.key };
+  await set(newListingRef, newListingWithId);
+  return newListingRef.key;
 }
 
-const removeListing = (listingId) => {
+const removeListing = async (listingId) => {
   const listingRef = ref(db, `listings/${listingId}`);
-  listingRef.remove();
+  await remove(listingRef);
 }
 
 function App() {
