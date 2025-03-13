@@ -44,11 +44,16 @@ export default function HomePage() {
 }
 
 function ToolList({ tools }) {
+  let toolCards = "No tools found";
+  if (tools.length > 0) {
+    toolCards = tools.map((tool) => <ToolCard key={tool.name} tool={tool} />);
+  }
+  
   return (
     <div id="browse-tools" className="browse-section">
       <h1>Browse Tools</h1>
       <div className="marketplace">
-        {tools.length > 0 ? tools.map((tool) => <ToolCard key={tool.name} tool={tool} />) : "No tools found"}
+        {toolCards}
       </div>
     </div>
   );
