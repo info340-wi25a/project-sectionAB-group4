@@ -13,18 +13,24 @@ function Signup({ users, setUsers }) {
 
   const handleSignup = (event) => {
     event.preventDefault();
-    const emailExists = users.some(user => user.email.toLowerCase() === email.toLowerCase());
+
+    const lowerEmail = email.toLowerCase();
+
+    const emailExists = users.some(user => user.email === lowerEmail);
 
     if (emailExists) {
       setError('Email already exists. Please login instead');
     } else {
+      const nextUserId = users.length + 1;
+
       const newUser = {
-        email,
+        userId: nextUserId, // Assign unique ID to user
+        email: lowerEmail,
         password,
-        firstName,
-        lastName,
-        locationState,
-        locationCity
+        firstName: firstName.toUpperCase(),
+        lastName: lastName.toUpperCase(),
+        locationState: locationState.toUpperCase(),
+        locationCity: locationCity.toUpperCase()
       };
       console.log([...users, newUser ]);
       setUsers([...users, newUser]);
@@ -57,10 +63,10 @@ function Signup({ users, setUsers }) {
         <input type="text" value={lastName} onChange={(event) => setLastName(event.target.value)} required />
 
         <label>State:</label>
-        <input type="text" value={locationState} onChange={(event) => setLocationState(event.target.value)} required />
+        <input type="text" value={locationState} onChange={(event) => setLocationState(event.target.value.trim())} required />
 
         <label>City:</label>
-        <input type="text" value={locationCity} onChange={(event) => setLocationCity(event.target.value)} required />
+        <input type="text" value={locationCity} onChange={(event) => setLocationCity(event.target.value.trim())} required />
 
         <button type="submit" className="signup-button">Sign Up</button>
       </form>

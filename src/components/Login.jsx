@@ -15,7 +15,16 @@ function Login({ users, setUser }) {
 
     if (authenticatedUser) {
       alert('Login successful! Redirecting to homepage...');
-      setUser(authenticatedUser); // Store the authenticated use in state
+
+      setUser({
+        userId: authenticatedUser.userId,
+        email: authenticatedUser.email,
+        firstName: authenticatedUser.firstName,
+        lastName: authenticatedUser.lastName,
+        locationState: authenticatedUser.locationState,
+        locationCity: authenticatedUser.locationCity
+      });
+
       setRedirect(true);
     } else {
       setError('Invalid email or password. Please try again.');

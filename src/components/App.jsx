@@ -25,6 +25,7 @@ function RequireAuth({ user }) {
 function App(props) {
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState(null);
+  const [toolListings, setToolListings] = useState([]); // State for tool listings
 
   return (
     <div>
@@ -44,7 +45,7 @@ function App(props) {
         <Route element={<RequireAuth user={user} />}>
           <Route path="/user-listings" element={<UserListings user={user} />} />
           <Route path="/user-rentings" element={<UserRentings user={user} />} />
-          <Route path="/create-listings" element={<CreateListing user={user} />} />
+          <Route path="/create-listings" element={<CreateListing user={user} toolListings={toolListings} setToolListings={setToolListings} />} />
           <Route path="/booking-details" element={<BookingDetails user={user} />} />
           <Route path="/tool-details" element={<ToolDetails user={user} />} />
         </Route>
