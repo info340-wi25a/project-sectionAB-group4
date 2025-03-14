@@ -23,7 +23,7 @@ function RequireAuth({ user }) {
 
 const addListing =  async (newListing) => {
   const newListingRef = push(ref(db, "listings"));
-  newListingWithId = { ...newListing, id: newListingRef.key };
+  const newListingWithId = { ...newListing, id: newListingRef.key };
   await set(newListingRef, newListingWithId);
   return newListingRef.key;
 }
@@ -83,7 +83,7 @@ function App() {
         <Route element={<RequireAuth user={user} />}>
           <Route path="/user-listings" element={<UserListings user={user} />} />
           <Route path="/user-rentings" element={<UserRentings user={user} />} />
-          <Route path="/create-listings" element={<CreateListing user={user} toolListings={toolListings} setToolListings={setToolListings} />} />
+          <Route path="/create-listings" element={<CreateListing user={user} toolListings={toolListings} setToolListings={setToolListings} addListing={addListing} />} />
           <Route path="/booking-details" element={<BookingDetails user={user} />} />
           <Route path="/tool-details" element={<ToolDetails user={user} />} />
         </Route>

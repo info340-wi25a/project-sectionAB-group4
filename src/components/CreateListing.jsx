@@ -1,46 +1,61 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router";
 
-export function CreateListing({ user, toolListings, setToolListings }) {
+
+export function CreateListing({ user, toolListings, setToolListings, addListing }) {
   const [toolName, setToolName] = useState("");
   const [pricePerDay, setPricePerDay] = useState("");
   const [location, setLocation] = useState("");
-  const [pictures, setPictures] = useState([]);
+  const [pictures, setPictures] = useState(null);
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [condition, setCondition] = useState("");
   const [redirect, setRedirect] = useState(false);
 
   const handlePictureUpload = (event) => {
-    const files = Array.from(event.target.files);
-    setPictures(files);
+    if (event.target.files.length > 0) {
+      setPictures(event.target.files[0]); // Store a single file
+    }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!user) {
       alert("You must be logged in to create a listing.");
     } else {
+
+      // Create listing object following Firebase schema
       const newListing = {
-        listingId: toolListings.length + 1, // Unique ID
-        userId: user.userId, // Owner of the tool
         toolName,
-        pricePerDay: parseFloat(pricePerDay),
-        location,
-        pictures,
         category,
-        description,
         condition,
-        available: true, // Tool is initially available
-        renterId: null, // No renter initially
-        dateListed: new Date().toISOString(), // Timestamp for listing creation
-        dateCheckedOut: null, // Not checked out yet
+        dateListed: new Date().toISOString(),
+        dateRented: null, // Note rented initially
+        description,
+        imageUrl: "", // Will later be updated with Firebase Storage URL
+        isAvailable: true, // Tool is initially available
+        lister_id: user.userId, // Owner ID
+        location,
+        pricePerDay: parseFloat(pricePerDay),
+        renter_id: -1, // No renter initially
       };
-      console.log([...toolListings, newListing]);
-      setToolListings([...toolListings, newListing]); // Update state with new listing
-      alert("Listing created successfully!");
-      setRedirect(true);
+      // console.log([...toolListings, newListing]);
+      // setToolListings([...toolListings, newListing]); // Update state with new listing
+      // alert("Listing created successfully!");
+      // setRedirect(true);
+
+      try {
+        const listingId = await addListing(newListing); // Add to Firebase
+        newListing.listingId = listingId; // Assign Firebase ID
+
+        setToolListings([...toolListings, newListing]); // Update React state
+        alert("Listing created successfully!");
+        setRedirect(true);
+      } catch (error) {
+        console.error("Error adding listing:", error);
+        alert("An error occurred while creating the listing.");
+      }
     };
   }
 
@@ -93,7 +108,7 @@ export function CreateListing({ user, toolListings, setToolListings }) {
             <input type="number" value={pricePerDay} onChange={(event) => setPricePerDay(event.target.value)} id="listing-price" name="price" placeholder="Enter rental price" required />
 
             <label htmlFor="listing-pictures">Upload Pictures:</label>
-            <input type="file" id="listing-pictures" name="pictures" accept="image/*" multiple onChange={handlePictureUpload} />
+            <input type="file" id="listing-pictures" name="pictures" accept="image/*" onChange={handlePictureUpload} />
 
             <label htmlFor="listing-location">Location:</label>
             <input type="text" value={location} onChange={(event) => setLocation(event.target.value)} id="listing-location" name="location" placeholder="Enter city or address" required/>
