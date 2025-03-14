@@ -7,11 +7,25 @@ function Filter({ onFilterApply }) {
   const [maxPrice, setMaxPrice] = useState("");
   const [category, setCategory] = useState("all");
 
-  const handleKeywordChange = (event) => setKeyword(event.target.value);
-  const handleLocationChange = (event) => setLocation(event.target.value);
-  const handleMinPriceChange = (event) => setMinPrice(event.target.value);
-  const handleMaxPriceChange = (event) => setMaxPrice(event.target.value);
-  const handleCategoryChange = (event) => setCategory(event.target.value);
+  const handleKeywordChange = (event) => {
+    setKeyword(event.target.value);
+  };
+
+  const handleLocationChange = (event) =>  {
+    setLocation(event.target.value);
+  };
+
+  const handleMinPriceChange = (event) => {
+    setMinPrice(event.target.value);
+  };
+
+  const handleMaxPriceChange = (event) => {
+    setMaxPrice(event.target.value);
+  };
+  
+  const handleCategoryChange = (event) => {
+    setCategory(event.target.value);
+  };
 
   // Handle form submission
   const handleSubmit = (event) => {

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route, Navigate, Outlet} from 'react-router';
 import { NavBar } from './Nav';
 import { Footer } from './Footer';
@@ -10,8 +10,8 @@ import BookingDetails from './booking-details'
 import ToolDetails from './tool-details'
 import Signup from './Signup';
 import Login from './Login';
-
-import SAMPLE_TOOLS from '../data/sample_tools.json';
+import { ref, onValue, push, set } from 'firebase/database';
+import { db } from '../main';
 
 function RequireAuth({ user }) {
   if(!user) {
@@ -21,11 +21,49 @@ function RequireAuth({ user }) {
   }
 }
 
+const addListing =  async (newListing) => {
+  const newListingRef = push(ref(db, "listings"));
+  newListingWithId = { ...newListing, id: newListingRef.key };
+  await set(newListingRef, newListingWithId);
+  return newListingRef.key;
+}
 
-function App(props) {
+const removeListing = async (listingId) => {
+  const listingRef = ref(db, `listings/${listingId}`);
+  await remove(listingRef);
+}
+
+function App() {
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState(null);
   const [toolListings, setToolListings] = useState([]); // State for tool listings
+  const [tools, setTools] = useState([]);
+
+  useEffect(() => {
+    const listingsRef = ref(db, 'listings');
+
+    const unregisterFunction = onValue(listingsRef, (snapshot) => {
+      const listingsValue = snapshot.val();
+
+      if (!listingsValue) {
+        setTools([]);
+        return;
+      }
+
+      const allListingKeys = Object.keys(listingsValue);
+      const allListingsArray = allListingKeys.map((key) => {
+        const listingCopy = {...listingsValue[key]};
+        listingCopy.id = key;
+        return listingCopy;
+      });
+      setTools(allListingsArray);
+    });
+
+    function cleanup() {
+      unregisterFunction();
+    }
+    return cleanup;
+  }, []);
 
   return (
     <div>
@@ -36,8 +74,8 @@ function App(props) {
       {/* Routes Defined Here */}
       <Routes>
         {/* Public Routes */}
-        <Route path="/home" element={<HomePage tools={SAMPLE_TOOLS} user={user} />} />
-        <Route path="/browse-tools" element={<HomePage tools={SAMPLE_TOOLS} user={user} />} />
+        <Route path="/home" element={<HomePage tools={tools} user={user} />} />
+        <Route path="/browse-tools" element={<HomePage tools={tools} user={user} />} />
         <Route path="/signup" element={<Signup users={users} setUsers={setUsers} />} />
         <Route path="/login" element={<Login users={users} setUser={setUser} />} />
 
