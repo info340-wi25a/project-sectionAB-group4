@@ -27,7 +27,7 @@ function ToolDetails( { tools, user } ) {
             try {
                 await update(toolRef, {
                     isAvailable: false,
-                    renter_id: user.userId,
+                    renter_id: user.uid,
                 });
 
                 alert("Booking successful! The tool is now rented to you.");

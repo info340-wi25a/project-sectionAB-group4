@@ -12,6 +12,8 @@ import Signup from './Signup';
 import Login from './Login';
 import { ref, onValue, push, set, remove, update } from 'firebase/database';
 import { db } from '../main';
+import { auth } from '../main';
+import { onAuthStateChanged } from 'firebase/auth';
 
 function RequireAuth({ user }) {
   if(!user) {
@@ -39,10 +41,26 @@ const editListing = async (listing) => {
 }
 
 function App() {
-  const [users, setUsers] = useState([]);
   const [user, setUser] = useState(null);
   const [editingTool, setEditingTool] = useState(null);
   const [tools, setTools] = useState([]);
+
+  useEffect(() => {
+    // Listen for authentication state changes
+    const unsubscribe = onAuthStateChanged(auth, (authUser) => {
+      if (authUser) {
+        setUser(authUser);
+      } else {
+        setUser(null);
+      }
+    });
+
+    function cleanup() {
+      unsubscribe();
+    }
+
+    return cleanup;
+  }, []);
 
   useEffect(() => {
     const listingsRef = ref(db, 'listings');
@@ -81,8 +99,8 @@ function App() {
         {/* Public Routes */}
         <Route path="/home" element={<HomePage tools={tools} />} />
         <Route path="/browse-tools" element={<HomePage tools={tools} />} />
-        <Route path="/signup" element={<Signup users={users} setUsers={setUsers} />} />
-        <Route path="/login" element={<Login users={users} setUser={setUser} />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
 
         {/* Protected Routes */}
         <Route element={<RequireAuth user={user} />}>

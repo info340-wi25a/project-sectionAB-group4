@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Navigate } from 'react-router';
+import { auth } from "../main";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 function Login({ users, setUser }) {
   const [email, setEmail] = useState('');
@@ -7,28 +9,36 @@ function Login({ users, setUser }) {
   const [error, setError] = useState('');
   const [redirect, setRedirect] = useState(false);
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
 
-    // Check if the user exists and password matches
-    const authenticatedUser = users.find(user => user.email.toLowerCase() === email.toLowerCase() && user.password === password);
-
-    if (authenticatedUser) {
-      alert('Login successful! Redirecting to homepage...');
-
-      setUser({
-        userId: authenticatedUser.userId,
-        email: authenticatedUser.email,
-        firstName: authenticatedUser.firstName,
-        lastName: authenticatedUser.lastName,
-        locationState: authenticatedUser.locationState,
-        locationCity: authenticatedUser.locationCity
-      });
-
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      alert("Login successful! Redirecting to homepage...");
       setRedirect(true);
-    } else {
-      setError('Invalid email or password. Please try again.');
+    } catch (error) {
+      setError("Invalid email or password. Please try again.");
     }
+
+    // Check if the user exists and password matches
+    // const authenticatedUser = users.find(user => user.email.toLowerCase() === email.toLowerCase() && user.password === password);
+
+    // if (authenticatedUser) {
+    //   alert('Login successful! Redirecting to homepage...');
+
+    //   setUser({
+    //     userId: authenticatedUser.userId,
+    //     email: authenticatedUser.email,
+    //     firstName: authenticatedUser.firstName,
+    //     lastName: authenticatedUser.lastName,
+    //     locationState: authenticatedUser.locationState,
+    //     locationCity: authenticatedUser.locationCity
+    //   });
+
+    //   setRedirect(true);
+    // } else {
+    //   setError('Invalid email or password. Please try again.');
+    // }
   };
 
   if (redirect) {

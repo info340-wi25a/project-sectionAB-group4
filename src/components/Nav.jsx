@@ -1,12 +1,20 @@
 import React from 'react'; //import React Component
-import { NavLink } from 'react-router';
 import { useState } from 'react';
+import { NavLink } from 'react-router';
+import { signOut } from 'firebase/auth';
+import { auth } from '../main';
+
 
 export function NavBar({ user, setUser }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleLogout = () => {
-    setUser(null); // Reset user state to null
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      setUser(null);
+    } catch (error) {
+      console.error("Error loggin out:", error);
+    }
   };
 
   return (
@@ -35,7 +43,7 @@ export function NavBar({ user, setUser }) {
         {user ? (
           <>
             <span className="user-tag">
-              {user.firstName} {user.lastName.charAt(0)}.
+              {user.email.split("@")[0]}
             </span>
             <button onClick={handleLogout} className="btn logout">Log Out</button>
           </>
@@ -80,3 +88,5 @@ function MenuToggle(props) {
     </button>
   );
 }
+
+export default NavBar;
