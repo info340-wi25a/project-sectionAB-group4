@@ -10,7 +10,7 @@ import BookingDetails from './booking-details'
 import ToolDetails from './tool-details'
 import Signup from './Signup';
 import Login from './Login';
-import { ref, onValue, push, set } from 'firebase/database';
+import { ref, onValue, push, set, remove, update } from 'firebase/database';
 import { db } from '../main';
 
 function RequireAuth({ user }) {
@@ -33,10 +33,15 @@ const removeListing = async (listingId) => {
   await remove(listingRef);
 }
 
+const editListing = async (listing) => {
+  const listingRef = ref(db, `listings/${listing.id}`);
+  await update(listingRef, listing);
+}
+
 function App() {
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState(null);
-  const [toolListings, setToolListings] = useState([]); // State for tool listings
+  const [editingTool, setEditingTool] = useState(null);
   const [tools, setTools] = useState([]);
 
   useEffect(() => {
@@ -81,11 +86,12 @@ function App() {
 
         {/* Protected Routes */}
         <Route element={<RequireAuth user={user} />}>
-          <Route path="/user-listings" element={<UserListings user={user} />} />
+          <Route path="/user-listings" element={<UserListings tools={tools} user={user} deleteListing={removeListing} setEditingTool={setEditingTool} />} />
           <Route path="/user-rentings" element={<UserRentings user={user} />} />
-          <Route path="/create-listings" element={<CreateListing user={user} toolListings={toolListings} setToolListings={setToolListings} addListing={addListing} />} />
+          <Route path="/create-listing" element={<CreateListing user={user} saveListing={addListing} />} />
           <Route path="/booking-details" element={<BookingDetails user={user} />} />
           <Route path="/tool-details/:toolId" element={<ToolDetails user={user} tools={tools} />} />
+          <Route path="/edit-listing" element={<CreateListing user={user} saveListing={editListing} tool={editingTool} />} />
         </Route>
 
         {/* Redirect All Unknown Routes */}

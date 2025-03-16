@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import { Navigate } from "react-router";
 
 
-export function CreateListing({ user, toolListings, setToolListings, addListing }) {
-  const [toolName, setToolName] = useState("");
-  const [pricePerDay, setPricePerDay] = useState("");
-  const [location, setLocation] = useState("");
-  const [pictures, setPictures] = useState(null);
-  const [category, setCategory] = useState("");
-  const [description, setDescription] = useState("");
-  const [condition, setCondition] = useState("");
+export function CreateListing({ user, saveListing, tool }) {
+
+  const [toolName, setToolName] = useState(tool ? tool.toolName : "");
+  const [pricePerDay, setPricePerDay] = useState(tool ? tool.pricePerDay : "");
+  const [location, setLocation] = useState(tool ? tool.location : "");
+  const [pictures, setPictures] = useState(tool ? tool.imageUrl : null);
+  const [category, setCategory] = useState(tool ? tool.category : "");
+  const [description, setDescription] = useState(tool ? tool.description : "");
+  const [condition, setCondition] = useState(tool ? tool.condition : "");
   const [redirect, setRedirect] = useState(false);
 
   const handlePictureUpload = (event) => {
@@ -27,30 +28,29 @@ export function CreateListing({ user, toolListings, setToolListings, addListing 
 
       // Create listing object following Firebase schema
       const newListing = {
+        id: tool ? tool.id : null,
         toolName,
         category,
         condition,
-        dateListed: new Date().toISOString(),
+        dateListed: tool ? tool.dateListed : new Date().toISOString(),
         dateRented: null, // Note rented initially
         description,
         imageUrl: "", // Will later be updated with Firebase Storage URL
         isAvailable: true, // Tool is initially available
-        lister_id: user.userId, // Owner ID
+        lister_id: tool ? tool.lister_id : user.userId, // Owner ID
         location,
         pricePerDay: parseFloat(pricePerDay),
         renter_id: -1, // No renter initially
       };
 
       try {
-        const listingId = await addListing(newListing); // Add to Firebase
+        const listingId = await saveListing(newListing); // Add to Firebase
         newListing.listingId = listingId; // Assign Firebase ID
-
-        setToolListings([...toolListings, newListing]); // Update React state
-        alert("Listing created successfully!");
+        alert(tool ? "Listing updated successfully!" : "Listing created successfully!");
         setRedirect(true);
       } catch (error) {
-        console.error("Error adding listing:", error);
-        alert("An error occurred while creating the listing.");
+        console.error("Error saving listing:", error);
+        alert("An error occurred while saving the listing.");
       }
     };
   }
@@ -63,7 +63,7 @@ export function CreateListing({ user, toolListings, setToolListings, addListing 
     <div className="create-listing">
       <section id="create-listing-header">
         <div className="header-listings">
-          <h1>Create a New Listing</h1>
+          <h1>{tool ? "Edit a listing!" : "Create a new Listing!"}</h1>
         </div>
       </section>
 
@@ -110,7 +110,7 @@ export function CreateListing({ user, toolListings, setToolListings, addListing 
             <label htmlFor="tool-description">Description:</label>
             <textarea value={description} onChange={(event) => setDescription(event.target.value)} placeholder="Provide additional details (optional)" name="description" id="listing-description"></textarea>
 
-            <button type="submit" id="submit-listing-btn" className="btn-primary">Submit Listing</button>
+            <button type="submit" id="submit-listing-btn" className="btn-primary">{tool ? "Edit Listing" : "Submit Listing"}</button>
           </fieldset>
 
         </form>

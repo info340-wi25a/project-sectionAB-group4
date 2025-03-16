@@ -1,123 +1,83 @@
 import React from "react";
 import "../index.css"
-import arc_welding from "../img/arc_welding_machine.jpg"
-import power_washer from "../img/power-washer.jpg"
-import power_drill from "../img/power-drill.jpg"
-import lawn_mower from "../img/lawn-mower.jpg"
-import sander from "../img/sander.jpg"
-import angle_grinder from "../img/angle-grinder.jpg"
-import OptionComponent from "./options";
+import { useNavigate } from "react-router";
 
-function UserListings() {
+function UserListings({tools, user, deleteListing, setEditingTool}) {
+    const myTools = tools.filter((tool) => {
+        return tool.lister_id === user.userId;
+    });
+
+    let myToolCards = "You currently have no tool listings!";
+    if (myTools.length > 0) {
+        myToolCards = myTools.map((tool) => <ListingCard key={tool.id} myTool={tool} deleteListing={deleteListing} setEditingTool={setEditingTool} />);
+    }
+
     return(
-        <div>
-            <div className="my-listings-page">
-                <div className="my-listings">
-                    <section id="my-listings">
-                        <div className="header-listings">
-                            <h1>My Listings</h1>
-                        </div>
-                    </section>
-                    <div className="active-listings">
-                        <section id="active-listings">
-                            <h2>Active (6 Listings)</h2>
-                        </section>
-                        <section id="tool-section">
-                            <div className="tool-img">
-                                <img src={arc_welding} style={{float: 'left'}} alt="ARC Welding Machine"/>
-                            </div>
-                            <div className="tool-details">
-                                <div className="tool-name">
-                                    <h3>ARC Welding Machine</h3>
-                                </div>
-                                <div className="tool-desc">
-                                    <p>$35/day</p>
-                                    <p>Rented</p>
-                                </div>
-                            </div>
-                            <div className="option">
-                                <OptionComponent/>
-                            </div>
-                        </section>
-                        <section id="tool-section">
-                            <div className="tool-img">
-                                <img src={power_washer} style={{float: 'left'}} alt="Draper Pressure Washer"/>
-                            </div>
-                            <div className="tool-details">
-                                <div className="tool-name">
-                                    <h3>Drapper Power Washer, 2200W, 165bar</h3>
-                                </div>
-                                <div className="tool-desc">
-                                    <p>$45/day</p>
-                                    <p>Available</p>
-                                </div>
-                            </div>
-                            <OptionComponent/>
-                        </section>
-                        <section id="tool-section">
-                            <div className="tool-img">
-                                <img src={power_drill} style={{float: 'left'}} alt="BLACK+DECKER 20V Max Cordless Drill"/>
-                            </div>
-                            <div className="tool-details">
-                                <div className="tool-name">
-                                    <h3>BLACK+DECKER 20V Max Cordless Drill</h3>
-                                </div>
-                                <div className="tool-desc">
-                                    <p>$25/day</p>
-                                    <p>Available</p>
-                                </div>
-                            </div>
-                            <OptionComponent/>
-                        </section>
-                        <section id="tool-section">
-                            <div className="tool-img">
-                                <img src={lawn_mower} style={{float: 'left'}} alt="BILT HARD Gas Lawn Mower"/>
-                            </div>
-                            <div className="tool-details">
-                                <div className="tool-name">
-                                    <h3>BILT HARD Gas Lawn Mower 20 inch</h3>
-                                </div>
-                                <div className="tool-desc">
-                                    <p>$40/day</p>
-                                    <p>Available</p>
-                                </div>
-                            </div>
-                            <OptionComponent/>
-                        </section>
-                        <section id="tool-section">
-                            <div className="tool-img">
-                                <img src={sander} style={{float: 'left'}} alt="MIRKA Sander"/>
-                            </div>
-                            <div className="tool-details">
-                                <div className="tool-name">
-                                    <h3>MIRKA Sander</h3>
-                                </div>
-                                <div className="tool-desc">
-                                    <p>$20/day</p>
-                                    <p>Rented</p>
-                                </div>
-                            </div>
-                            <OptionComponent/>
-                        </section>
-                        <section id="tool-section">
-                            <div className="tool-img">
-                                <img src={angle_grinder} style={{float: 'left'}} alt="TOLSEN Angle Grinder"/>
-                            </div>
-                            <div className="tool-details">
-                                <div className="tool-name">
-                                    <h3>TOLSEN Angle Grinder 2400W 230MM</h3>
-                                </div>
-                                <div className="tool-desc">
-                                    <p>$18/day</p>
-                                    <p>Available</p>
-                                </div>
-                            </div>
-                            <OptionComponent/>
-                        </section>
+        <div className="my-listings-page">
+            <div className="my-listings">
+                <section id="my-listings">
+                    <div className="header-listings">
+                        <h1>My Listings</h1>
                     </div>
+                </section>
+                <div className="active-listings">
+                    <section id="active-listings">
+                        <h2>{`Active (${myTools.length} Listings)`}</h2>
+                    </section>
+                    {myToolCards}
                 </div>
             </div>
         </div>
+    )
+}
+
+function ListingCard({myTool, deleteListing, setEditingTool}) {
+    const navigate = useNavigate();
+
+    let isRented = "";
+    if (myTool.isAvailable) {
+        isRented = "Available";
+    } else {
+        isRented = "Currently Rented";
+    }
+
+    let imageSrc = myTool.imageUrl;
+    if (imageSrc === "") {
+        imageSrc = null;
+    }
+
+    const handleDelete = () => {
+        deleteListing(myTool.id);
+    }
+
+    const handleEdit = () => {
+        if (myTool.isAvailable) {
+            setEditingTool(myTool);
+            navigate("/edit-listing");
+        } else {
+            alert("You cannot edit a listing that is currently rented");
+        }
+    }
+
+    return (
+        <section id="tool-section">
+        <div className="tool-img">
+            <img src={imageSrc} style={{float: 'left'}} alt={myTool.toolName}/>
+        </div>
+        <div className="tool-details">
+            <div className="tool-name">
+                <h3>{myTool.toolName}</h3>
+            </div>
+            <div className="tool-desc">
+                <p>{`$${myTool.pricePerDay}/day`}</p>
+                <p>{isRented}</p>
+            </div>
+        </div>
+        <div className="listing-options">
+            <button className="edit-listing" type="button" onClick={handleEdit}>Edit</button>
+            <button className="delete-listing" type="button" onClick={handleDelete}>Delete</button>
+        </div>
+    </section>
     )
 }
 
