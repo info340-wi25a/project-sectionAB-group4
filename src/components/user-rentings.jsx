@@ -4,7 +4,6 @@ import wet_vacuum from "../img/wet-vacuum.jpg"
 import power_drill2 from "../img/power-drill2.jpg"
 import electric_saw from "../img/electric-saw.jpg"
 import concrete_saw from "../img/concrete-saw.jpg"
-import OptionComponent from "./options";
 
 function UserRentings() {
     return(
@@ -33,7 +32,6 @@ function UserRentings() {
                                     <p>In use</p>
                                 </div>
                             </div>
-                            <OptionComponent/>
                         </section>
                         <section id="tool-section">
                             <div className="tool-img">
@@ -48,7 +46,6 @@ function UserRentings() {
                                     <p>In use</p>
                                 </div>
                             </div>
-                            <OptionComponent/>
                         </section>
                     </div>
                     <div className="pending-bookings">
@@ -68,7 +65,6 @@ function UserRentings() {
                                     <p>Waiting for approval</p>
                                 </div>
                             </div>
-                            <OptionComponent/>
                         </section>
                     </div>
                     <div className="booking-history">
@@ -88,7 +84,6 @@ function UserRentings() {
                                     <p>Completed</p>
                                 </div>
                             </div>
-                            <OptionComponent/>
                         </section>
                     </div>
                 </div>
