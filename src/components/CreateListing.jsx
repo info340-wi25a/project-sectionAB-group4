@@ -1,21 +1,25 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router";
 
-
 export function CreateListing({ user, saveListing, tool }) {
 
   const [toolName, setToolName] = useState(tool ? tool.toolName : "");
   const [pricePerDay, setPricePerDay] = useState(tool ? tool.pricePerDay : "");
   const [location, setLocation] = useState(tool ? tool.location : "");
-  const [pictures, setPictures] = useState(tool ? tool.imageUrl : null);
+  const [pictures, setPictures] = useState(tool ? tool.imageBase64 : null);
   const [category, setCategory] = useState(tool ? tool.category : "");
   const [description, setDescription] = useState(tool ? tool.description : "");
   const [condition, setCondition] = useState(tool ? tool.condition : "");
   const [redirect, setRedirect] = useState(false);
 
   const handlePictureUpload = (event) => {
-    if (event.target.files.length > 0) {
-      setPictures(event.target.files[0]); // Store a single file
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        setPictures(e.target.result); // Store Base64 string
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -35,9 +39,9 @@ export function CreateListing({ user, saveListing, tool }) {
         dateListed: tool ? tool.dateListed : new Date().toISOString(),
         dateRented: null, // Note rented initially
         description,
-        imageUrl: "", // Will later be updated with Firebase Storage URL
+        imageBase64: pictures || "", // Sore Base64 image string
         isAvailable: true, // Tool is initially available
-        lister_id: tool ? tool.lister_id : user.userId, // Owner ID
+        lister_id: tool ? tool.lister_id : user.uid, // Owner ID
         location,
         pricePerDay: parseFloat(pricePerDay),
         renter_id: -1, // No renter initially
@@ -63,7 +67,7 @@ export function CreateListing({ user, saveListing, tool }) {
     <div className="create-listing">
       <section id="create-listing-header">
         <div className="header-listings">
-          <h1>{tool ? "Edit a listing!" : "Create a new Listing!"}</h1>
+          <h1>{tool ? "Edit a listing!" : "Create a New Listing!"}</h1>
         </div>
       </section>
 

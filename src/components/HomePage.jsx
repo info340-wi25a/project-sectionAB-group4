@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Filter from "./Filter";
 import { Link } from "react-router";
+import placeholderImage from "../img/placeholder-tool.jpg";
 
 export default function HomePage({ tools }) {
   const [filteredTools, setFilteredTools] = useState(tools);
@@ -67,6 +68,7 @@ function ToolCard(props) {
     const tool = props.tool;
     return (
         <Link to={`/tool-details/${tool.id}`} className='listing-card'>
+          <img src={tool.imageBase64 || placeholderImage} alt={tool.toolName || "Tool image"} />
             <div className='listing-details'>
                 <h3>{tool.toolName}</h3>
                 <p className='price'>{`$${tool.pricePerDay}/day`}</p>
