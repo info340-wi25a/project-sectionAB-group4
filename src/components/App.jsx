@@ -74,8 +74,8 @@ function App() {
       {/* Routes Defined Here */}
       <Routes>
         {/* Public Routes */}
-        <Route path="/home" element={<HomePage tools={tools} user={user} />} />
-        <Route path="/browse-tools" element={<HomePage tools={tools} user={user} />} />
+        <Route path="/home" element={<HomePage tools={tools} />} />
+        <Route path="/browse-tools" element={<HomePage tools={tools} />} />
         <Route path="/signup" element={<Signup users={users} setUsers={setUsers} />} />
         <Route path="/login" element={<Login users={users} setUser={setUser} />} />
 
@@ -85,26 +85,12 @@ function App() {
           <Route path="/user-rentings" element={<UserRentings user={user} />} />
           <Route path="/create-listings" element={<CreateListing user={user} toolListings={toolListings} setToolListings={setToolListings} addListing={addListing} />} />
           <Route path="/booking-details" element={<BookingDetails user={user} />} />
-          <Route path="/tool-details" element={<ToolDetails user={user} />} />
+          <Route path="/tool-details/:toolId" element={<ToolDetails user={user} tools={tools} />} />
         </Route>
 
         {/* Redirect All Unknown Routes */}
         <Route path="*" element={<Navigate to="/home" />} />
       </Routes>
-{/*
-      <Routes>
-        <Route path="/home" element={<HomePage tools={SAMPLE_TOOLS} />}></Route>
-        <Route path="/browse-tools" element={<HomePage tools={SAMPLE_TOOLS} />}></Route>
-        <Route path="/user-listings" element={<UserListings />}></Route>
-        <Route path="/user-rentings" element={<UserRentings />}></Route>
-        <Route path="/create-listings" element={<CreateListing />}></Route>
-        <Route path="/booking-details" element={<BookingDetails />}></Route>
-        <Route path="/tool-details" element={<ToolDetails />}></Route>
-        <Route path="/signup" element={<Signup users={users} setUsers={setUsers} />}></Route>
-        <Route path="/login" element={<Login users={users} />} />
-        <Route path="*" element={<Navigate to="/home"/>}></Route>
-      </Routes> */}
-
       <Footer />
     </div>
   );

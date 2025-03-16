@@ -66,12 +66,10 @@ function ToolList({ tools }) {
 function ToolCard(props) {
     const tool = props.tool;
     return (
-        // <Link to={`/tools/${tool.name}`}>
-        <Link to={'/tool-details'} className='listing-card'>
-            <img src={tool.image} alt={tool.name} />
+        <Link to={`/tool-details/${tool.id}`} className='listing-card'>
             <div className='listing-details'>
-                <h3>{tool.name}</h3>
-                <p className='price'>{`$${tool.price}/day`}</p>
+                <h3>{tool.toolName}</h3>
+                <p className='price'>{`$${tool.pricePerDay}/day`}</p>
                 <p className='description'>{tool.description}</p>
             </div>
          </Link>

@@ -40,10 +40,6 @@ export function CreateListing({ user, toolListings, setToolListings, addListing 
         pricePerDay: parseFloat(pricePerDay),
         renter_id: -1, // No renter initially
       };
-      // console.log([...toolListings, newListing]);
-      // setToolListings([...toolListings, newListing]); // Update state with new listing
-      // alert("Listing created successfully!");
-      // setRedirect(true);
 
       try {
         const listingId = await addListing(newListing); // Add to Firebase
@@ -58,31 +54,6 @@ export function CreateListing({ user, toolListings, setToolListings, addListing 
       }
     };
   }
-
-  // const [formData, setFormData] = useState({
-  //   title: "",
-  //   price: "",
-  //   location: "",
-  //   pictures: [],
-  //   category: ""
-  // });
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-
-  //   // Gather form values on submission
-  //   const form = event.target;
-  //   const newListing = {
-  //     title: form.title.value,
-  //     price: form.price.value,
-  //     location: form.location.value,
-  //     pictures: form.pictures.files,
-  //     category: form.category.value
-  //   };
-
-  //   setFormData(newListing); // Update state only on submit
-  //   console.log("Listing Submitted:", newListing);
-  // };
 
   if (redirect) {
     return <Navigate to="/user-listings" />;
