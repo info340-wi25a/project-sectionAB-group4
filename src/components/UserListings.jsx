@@ -4,9 +4,11 @@ import { useNavigate } from "react-router";
 
 function UserListings({tools, user, deleteListing, setEditingTool}) {
     const myTools = tools.filter((tool) => {
-        return tool.lister_id === user.userId;
+        return tool.lister_id === user.uid;
     });
-
+    console.log(myTools);
+    console.log(tools);
+    console.log(user);
     let myToolCards = "You currently have no tool listings!";
     if (myTools.length > 0) {
         myToolCards = myTools.map((tool) => <ListingCard key={tool.id} myTool={tool} deleteListing={deleteListing} setEditingTool={setEditingTool} />);
