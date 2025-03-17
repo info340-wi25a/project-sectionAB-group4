@@ -1,130 +1,123 @@
-import React, { useState, useEffect }from "react";
-import { ref, onValue, update } from "firebase/database";
+import React, {useEffect, useState} from "react";
+import "../index.css"
+import {ref, onValue, update} from "firebase/database";
 import { db } from "../main";
-import "../index.css";
-import placeholderImage from "../img/placeholder-tool.jpg";
 
-
-function UserRentings({ user, tools }) {
-    const [currentBookings, setCurrentBookings] = useState([]);
-    const [pastBookings, setPastBookings] = useState([]);
-
-    useEffect(() => {
-        if (!user) return ;
-
-        const bookingsRef = ref(db, "bookings");
-
-        const unregisterFunction = onValue(bookingsRef, (snapshot) => {
-            const bookingsValue = snapshot.val();
-            if (!bookingsValue) {
-                setCurrentBookings([]);
-                setPastBookings([]);
-                return;
-            }
-
-            const allBookingKeys = Object.keys(bookingsValue);
-            const allBookingsArray = allBookingKeys.map((key) => ({
-                id: key,
-                ...bookingsValue[key],
-            }));
-
-            const userBookings = allBookingsArray.filter((booking) => booking.renter_id === user.uid);
-
-            setCurrentBookings(userBookings.filter((booking) => booking.date_returned === ""));
-            setPastBookings(userBookings.filter((booking) => booking.date_returned !== ""));
-
-        });
-
-        return unregisterFunction;
-
-    }, [user]);
-
-    async function handleReturnTool(booking) {
-        const { listing_id } = booking;
-        const toolRef = ref(db, `listings/${listing_id}`);
-        const bookingRef = ref(db, `bookings/${booking.id}`);
-
-        try {
-            await update(toolRef, {
-                isAvailable: true,
-                renter_id: -1,
-            });
-
-            await update(bookingRef, {
-                date_returned: new Date().toISOString(),
-            });
-
-            alert("Tool succesfully returned!");
-        } catch (error) {
-            console.error("Error returning tool:", error);
-            alert("An error occurred while returning the tool. Please try again.");
+function UserRentings({tools, user}) {
+    const [bookings, setBookings] = useState([])
+    const dataBooking = bookings.map(booking => {
+        const existingBookings = tools.find(tool => {
+            return booking.listing_id === tool.id
+        })
+        if (existingBookings) {
+            return booking
         }
-    };
+        return null
+    }).filter(item => item)
+    const currentBookings = dataBooking.filter(item => !item.date_returned)
+    const historyBookings = dataBooking.filter(item => item.date_returned)
+    const bookingCollection = ref(db, "bookings")
 
-    return (
-        <div className ="my-rentings-page">
-            <div className="my-rentings">
-                <section id="my-rentings">
-                    <div className="header-rentings page-header">
-                        <h1>My Rentings</h1>
-                    </div>
-                </section>
+    useEffect(()=> {
+        const getBookings = () => {
+            onValue(bookingCollection, (snapshot) => {
+                const data = snapshot.val()
+                const dataBooking = Object.keys(data).map(key => {
+                    return {
+                        id:key,
+                        ...data[key]
+                    }
+                })
+                setBookings(dataBooking)
+            })
+        }
+        getBookings()
+    },[])
 
-                {/* Current Bookings */}
-                <div className="current-bookings">
-                    <section id="current-bookings">
-                        <h2>Current ({currentBookings.length} Bookings)</h2>
-                    </section>
-                    {currentBookings.length > 0 ? (
-                        currentBookings.map((booking) => (
-                            <BookingCard key={booking.id} booking={booking} tools={tools} onReturn={handleReturnTool} />
-                        ))
-                    ) : (
-                        <p>No current bookings.</p>
-                    )}
-                </div>
-
-                {/* Past Bookings */}
-                <div className="booking-history">
-                    <section id="booking-history">
-                        <h2>History</h2>
-                    </section>
-                    {pastBookings.length > 0 ? (
-                        pastBookings.map((booking) => <BookingCard key={booking.id} booking={booking} tools={tools} />)
-                    ) : (
-                        <p>No past bookings.</p>
-                    )}
-                </div>
-            </div>
-        </div>
-    );
-}
-
-function BookingCard({ booking, tools, onReturn }) {
-    const tool = tools.find((t) => t.id === booking.listing_id) || {};
-
-    let showReturnButton = false;
-
-    if (!booking.date_returned && onReturn) {
-        showReturnButton = true;
+    const returnBooking = async (booking) => {
+      const listingRef = ref(db, `bookings/${booking.id}`);
+      await update(listingRef, {...booking, date_returned:new Date()});
     }
 
-    return (
-        <section id="tool-section">
-            <div className="tool-img">
-                <img src={tool.imageBase64 || placeholderImage} alt={tool.toolName || "Tool image"} />
-            </div>
-            <div className="tool-details">
-                <div className="tool-name">
-                    <h3>{tool.toolName || "Booking ID#: " + booking.id || "Unknown Tool"}</h3>
+    const CurrentBooking = ({type}) => {
+        const isCurrent = type === "current"
+        if (isCurrent) {
+            return (
+                <div>
+                    {currentBookings.map((val) => {
+                        const existingBookings = tools.find(tool => {
+                            return val.listing_id === tool.id
+                        })
+                        return (
+                            <section id="tool-section">
+                                <div className="tool-img">
+                                    <img src={existingBookings.imageBase64} style={{float: 'left'}} alt={existingBookings.toolName}/>
+                                </div>
+                                <div className="tool-details">
+                                    <div className="tool-name">
+                                        <h3>{existingBookings.toolName}</h3>
+                                    </div>
+                                    <div className="tool-desc">
+                                        <p>{val.date_booked}</p>
+                                    </div>
+                                </div>
+                                <div className="listing-options">
+                                    <button className="edit-listing" type="button" onClick={() => returnBooking(val)}>Return Tool</button>
+                                </div>
+                            </section>
+                        )
+                    })}
                 </div>
-                <div className="tool-desc">
-                    <p>Booked on: {new Date(booking.date_booked).toLocaleDateString()}</p>
-                    {booking.date_returned ? (
-                        <p>Returned on: {new Date(booking.date_returned).toLocaleDateString()}</p>
-                    ) : (
-                        <p>Status: In use</p>
-                    )}
+            )
+        }
+
+        return (
+            <div>
+                {historyBookings.map((val) => {
+                    const existingBookings = tools.find(tool => {
+                        return val.listing_id === tool.id
+                    })
+                    return (
+                        <section id="tool-section">
+                            <div className="tool-img">
+                                <img src={existingBookings.imageBase64} style={{float: 'left'}} alt={existingBookings.toolName}/>
+                            </div>
+                            <div className="tool-details">
+                                <div className="tool-name">
+                                    <h3>{existingBookings.toolName}</h3>
+                                </div>
+                                <div className="tool-desc">
+                                    <p>{val.date_booked}</p>
+                                </div>
+                            </div>
+                        </section>
+                    )
+                })}
+            </div>
+        )
+    }
+
+    return(
+        <div>
+            <div className ="my-rentings-page">
+                <div className="my-rentings">
+                    <section id="my-rentings">
+                        <div className="header-rentings page-header">
+                            <h1>My Rentings</h1>
+                        </div>
+                    </section>
+                    <div className="current-bookings">
+                        <section id="current-bookings">
+                            <h2>Current ({currentBookings.length} Bookings)</h2>
+                        </section>
+                        <CurrentBooking type= "current"/>
+                    </div>
+                    <div className="booking-history">
+                        <section id="booking-history">
+                            <h2>History</h2>
+                        </section>
+                        <CurrentBooking type= "history"/>
+                    </div>
                 </div>
             </div>
             {showReturnButton ? (
