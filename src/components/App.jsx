@@ -40,12 +40,14 @@ async function editListing(listing) {
 
 function App() {
   const [user, setUser] = useState(null);
+  const [isAuthChecked, setIsAuthChecked] = useState(false);
   const [editingTool, setEditingTool] = useState(null);
   const [tools, setTools] = useState([]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (authUser) => {
       setUser(authUser || null);
+      setIsAuthChecked(true);
     });
 
     return unsubscribe;
@@ -76,6 +78,10 @@ function App() {
     }
     return cleanup;
   }, []);
+
+  if (!isAuthChecked) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className='main-page'>

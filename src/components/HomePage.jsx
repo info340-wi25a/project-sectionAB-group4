@@ -6,6 +6,10 @@ import placeholderImage from "../img/placeholder-tool.jpg";
 export default function HomePage({ tools }) {
   const [filteredTools, setFilteredTools] = useState(tools);
 
+  useEffect(() => {
+    setFilteredTools(tools);
+  }, [tools]);
+
   function applyFilters(filters) {
     let filtered = [...tools];
 
