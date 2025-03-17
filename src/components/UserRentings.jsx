@@ -1,12 +1,102 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "../index.css"
-import wet_vacuum from "../img/wet-vacuum.jpg"
-import power_drill2 from "../img/power-drill2.jpg"
-import electric_saw from "../img/electric-saw.jpg"
-import concrete_saw from "../img/concrete-saw.jpg"
+import {ref, onValue, update} from "firebase/database";
+import { db } from "../main";
 
-function UserRentings({tools}) {
-    console.log(tools)
+function UserRentings({tools, user}) {
+    const [bookings, setBookings] = useState([])
+    const dataBooking = bookings.map(booking => {
+        const existingBookings = tools.find(tool => {
+            return booking.listing_id === tool.id 
+        })
+        if (existingBookings) {
+            return booking
+        }
+        return null 
+    }).filter(item => item)
+    const currentBookings = dataBooking.filter(item => !item.date_returned)
+    const historyBookings = dataBooking.filter(item => item.date_returned)
+    const bookingCollection = ref(db, "bookings")
+
+    useEffect(()=> {
+        const getBookings = () => {
+            onValue(bookingCollection, (snapshot) => {
+                const data = snapshot.val()
+                const dataBooking = Object.keys(data).map(key => {
+                    return {
+                        id:key, 
+                        ...data[key]
+                    }
+                })
+                setBookings(dataBooking)
+            })
+        }
+        getBookings()
+    },[])
+
+    const returnBooking = async (booking) => { 
+      const listingRef = ref(db, `bookings/${booking.id}`);
+      await update(listingRef, {...booking, date_returned:new Date()});
+    }
+
+    const CurrentBooking = ({type}) => {
+        const isCurrent = type === "current"
+        if (isCurrent) {
+            return (
+                <div>
+                    {currentBookings.map((val) => {
+                        const existingBookings = tools.find(tool => {
+                            return val.listing_id === tool.id
+                        })
+                        return (
+                            <section id="tool-section">
+                                <div className="tool-img">
+                                    <img src={existingBookings.imageBase64} style={{float: 'left'}} alt={existingBookings.toolName}/>
+                                </div>
+                                <div className="tool-details">
+                                    <div className="tool-name">
+                                        <h3>{existingBookings.toolName}</h3>
+                                    </div>
+                                    <div className="tool-desc">
+                                        <p>{val.date_booked}</p>
+                                    </div>
+                                </div>
+                                <div className="listing-options">
+                                    <button className="edit-listing" type="button" onClick={() => returnBooking(val)}>Return Tool</button>
+                                </div>
+                            </section>
+                        )
+                    })}
+                </div>
+            )
+        }
+
+        return (
+            <div>
+                {historyBookings.map((val) => {
+                    const existingBookings = tools.find(tool => {
+                        return val.listing_id === tool.id 
+                    })
+                    return (
+                        <section id="tool-section">
+                            <div className="tool-img">
+                                <img src={existingBookings.imageBase64} style={{float: 'left'}} alt={existingBookings.toolName}/>
+                            </div>
+                            <div className="tool-details">
+                                <div className="tool-name">
+                                    <h3>{existingBookings.toolName}</h3>
+                                </div>
+                                <div className="tool-desc">
+                                    <p>{val.date_booked}</p>
+                                </div>
+                            </div>
+                        </section>
+                    )
+                })}
+            </div>
+        )
+    }
+
     return(
         <div>
             <div className ="my-rentings-page">
@@ -18,74 +108,15 @@ function UserRentings({tools}) {
                     </section>
                     <div className="current-bookings">
                         <section id="current-bookings">
-                            <h2>Current (2 Bookings)</h2>
+                            <h2>Current ({currentBookings.length} Bookings)</h2>
                         </section>
-                        <section id="tool-section">
-                            <div className="tool-img">
-                                <img src={wet_vacuum} style={{float: 'left'}} alt="Vacmaster 5 Gallon Wet/Dry Vacuum"/>
-                            </div>
-                            <div className="tool-details">
-                                <div className="tool-name">
-                                    <h3>Vacmaster 5 Gallon Wet/Dry Vacuum</h3>
-                                </div>
-                                <div className="tool-desc">
-                                    <p>02-18-2025 to 02-20-2025</p>
-                                    <p>In use</p>
-                                </div>
-                            </div>
-                        </section>
-                        <section id="tool-section">
-                            <div className="tool-img">
-                                <img src={power_drill2} style={{float: 'left'}} alt="MPT Power Drill Pro"/>
-                            </div>
-                            <div className="tool-details">
-                                <div className="tool-name">
-                                    <h3>MPT Power Drill Pro</h3>
-                                </div>
-                                <div className="tool-desc">
-                                    <p>02-18-2025 to 02-20-2025</p>
-                                    <p>In use</p>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                    <div className="pending-bookings">
-                        <section id="pending-bookings">
-                            <h2>Pending (1 Booking)</h2>
-                        </section>
-                        <section id="tool-section">
-                            <div className="tool-img">
-                                <img src={electric_saw} style={{float: 'left'}} alt="Bauer Circular Saw"/>
-                            </div>
-                            <div className="tool-details">
-                                <div className="tool-name">
-                                    <h3>Bauer 14 Amp 7-1/4 in. Circular Saw</h3>
-                                </div>
-                                <div className="tool-desc">
-                                    <p>02-14-2025 to 02-16-2025</p>
-                                    <p>Waiting for approval</p>
-                                </div>
-                            </div>
-                        </section>
+                        <CurrentBooking type= "current"/>
                     </div>
                     <div className="booking-history">
                         <section id="booking-history">
                             <h2>History</h2>
                         </section>
-                        <section id="tool-section">
-                            <div className="tool-img">
-                                <img src={concrete_saw} style={{float: 'left'}} alt="Neatoom Electric Concrete Saw"/>
-                            </div>
-                            <div className="tool-details">
-                                <div className="tool-name">
-                                    <h3>Neatoom Electric Concrete Saw</h3>
-                                </div>
-                                <div className="tool-desc">
-                                    <p>12-14-2024 to 12-19-2024</p>
-                                    <p>Completed</p>
-                                </div>
-                            </div>
-                        </section>
+                        <CurrentBooking type= "history"/>
                     </div>
                 </div>
             </div>
