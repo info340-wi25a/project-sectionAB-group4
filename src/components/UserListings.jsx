@@ -1,12 +1,13 @@
 import React from "react";
 import "../index.css"
 import { useNavigate } from "react-router";
+import placeholderImage from "../img/placeholder-tool.jpg";
 
 function UserListings({tools, user, deleteListing, setEditingTool}) {
     const myTools = tools.filter((tool) => {
         return tool.lister_id === user.uid;
     });
-    
+
     let myToolCards = "You currently have no tool listings!";
     if (myTools.length > 0) {
         myToolCards = myTools.map((tool) => <ListingCard key={tool.id} myTool={tool} deleteListing={deleteListing} setEditingTool={setEditingTool} />);
@@ -41,7 +42,7 @@ function ListingCard({myTool, deleteListing, setEditingTool}) {
         isRented = "Currently Rented";
     }
 
-    let imageSrc = myTool.imageUrl;
+    let imageSrc = myTool.imageBase64;
     if (imageSrc === "") {
         imageSrc = null;
     }
@@ -62,7 +63,7 @@ function ListingCard({myTool, deleteListing, setEditingTool}) {
     return (
         <section id="tool-section">
         <div className="tool-img">
-            <img src={imageSrc} style={{float: 'left'}} alt={myTool.toolName}/>
+            <img src={imageSrc || placeholderImage} style={{float: 'left'}} alt={myTool.toolName || "Tool image"}/>
         </div>
         <div className="tool-details">
             <div className="tool-name">
