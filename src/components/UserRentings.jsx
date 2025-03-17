@@ -12,7 +12,7 @@ function UserRentings({tools}) {
             <div className ="my-rentings-page">
                 <div className="my-rentings">
                     <section id="my-rentings">
-                        <div className="header-rentings">
+                        <div className="header-rentings page-header">
                             <h1>My Rentings</h1>
                         </div>
                     </section>
