@@ -17,7 +17,7 @@ function UserListings({tools, user, deleteListing, setEditingTool}) {
         <div className="my-listings-page">
             <div className="my-listings">
                 <section id="my-listings">
-                    <div className="header-listings">
+                    <div className="header-listings page-header">
                         <h1>My Listings</h1>
                     </div>
                 </section>

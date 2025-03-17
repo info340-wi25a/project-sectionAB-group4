@@ -5,7 +5,8 @@ import power_drill2 from "../img/power-drill2.jpg"
 import electric_saw from "../img/electric-saw.jpg"
 import concrete_saw from "../img/concrete-saw.jpg"
 
-function UserRentings() {
+function UserRentings({tools}) {
+    console.log(tools)
     return(
         <div>
             <div className ="my-rentings-page">

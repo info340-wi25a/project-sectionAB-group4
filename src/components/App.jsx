@@ -89,33 +89,37 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <header>
-        <NavBar user={user} setUser={setUser} />
-      </header>
+    <div className='main-page'>
+      <div className='page-content'>
+        <header>
+          <NavBar user={user} setUser={setUser} />
+        </header>
 
-      {/* Routes Defined Here */}
-      <Routes>
-        {/* Public Routes */}
-        <Route path="/home" element={<HomePage tools={tools} />} />
-        <Route path="/browse-tools" element={<HomePage tools={tools} />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
+        {/* Routes Defined Here */}
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/home" element={<HomePage tools={tools} />} />
+          <Route path="/browse-tools" element={<HomePage tools={tools} />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
 
-        {/* Protected Routes */}
-        <Route element={<RequireAuth user={user} />}>
-          <Route path="/user-listings" element={<UserListings tools={tools} user={user} deleteListing={removeListing} setEditingTool={setEditingTool} />} />
-          <Route path="/user-rentings" element={<UserRentings user={user} />} />
-          <Route path="/create-listing" element={<CreateListing user={user} saveListing={addListing} />} />
-          <Route path="/booking-details" element={<BookingDetails user={user} />} />
-          <Route path="/tool-details/:toolId" element={<ToolDetails user={user} tools={tools} />} />
-          <Route path="/edit-listing" element={<CreateListing user={user} saveListing={editListing} tool={editingTool} />} />
-        </Route>
+          {/* Protected Routes */}
+          <Route element={<RequireAuth user={user} />}>
+            <Route path="/user-listings" element={<UserListings tools={tools} user={user} deleteListing={removeListing} setEditingTool={setEditingTool} />} />
+            <Route path="/user-rentings" element={<UserRentings user={user} tools={tools}/>} />
+            <Route path="/create-listing" element={<CreateListing user={user} saveListing={addListing} />} />
+            <Route path="/booking-details" element={<BookingDetails user={user} />} />
+            <Route path="/tool-details/:toolId" element={<ToolDetails user={user} tools={tools} />} />
+            <Route path="/edit-listing" element={<CreateListing user={user} saveListing={editListing} tool={editingTool} />} />
+          </Route>
 
-        {/* Redirect All Unknown Routes */}
-        <Route path="*" element={<Navigate to="/home" />} />
-      </Routes>
-      <Footer />
+          {/* Redirect All Unknown Routes */}
+          <Route path="*" element={<Navigate to="/home" />} />
+        </Routes>
+      </div>
+      <div className='footer-content'>
+        <Footer/>
+      </div>
     </div>
   );
 }

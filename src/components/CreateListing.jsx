@@ -83,7 +83,7 @@ export function CreateListing({ user, saveListing, tool }) {
             <input type="number" value={pricePerDay} onChange={(event) => setPricePerDay(event.target.value)} id="listing-price" name="price" placeholder="Enter rental price" required />
 
             <label htmlFor="listing-pictures">Upload Pictures:</label>
-            <input type="file" id="listing-pictures" name="pictures" accept="image/*" onChange={handlePictureUpload} />
+            <input type="file" size={8} id="listing-pictures" name="pictures" accept="image/*" onChange={handlePictureUpload} />
 
             <label htmlFor="listing-location">Location:</label>
             <input type="text" value={location} onChange={(event) => setLocation(event.target.value)} id="listing-location" name="location" placeholder="Enter city or address" required/>
@@ -112,7 +112,7 @@ export function CreateListing({ user, saveListing, tool }) {
             </select>
 
             <label htmlFor="tool-description">Description:</label>
-            <textarea value={description} onChange={(event) => setDescription(event.target.value)} placeholder="Provide additional details (optional)" name="description" id="listing-description"></textarea>
+            <textarea value={description} onChange={(event) => setDescription(event.target.value)} placeholder="Provide additional details (optional)" name="description" className="add-description" id="listing-description"></textarea>
 
             <button type="submit" id="submit-listing-btn" className="btn-primary">{tool ? "Edit Listing" : "Submit Listing"}</button>
           </fieldset>

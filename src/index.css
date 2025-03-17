@@ -23,6 +23,20 @@ body {
     line-height: 1.6;
 }
 
+.browse-section {
+    width: 100%;
+    padding: 0 20px;
+}
+.page-header {
+    background-color: #ffffff;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+    margin-top: 15px;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
 /* Login Page Styles */
 .login-page {
     display: flex;
@@ -164,7 +178,6 @@ body {
     font-weight: bold;
     color: white;
     text-decoration: none;
-    margin-bottom: 10px;
 }
 
 .nav-links {
@@ -188,6 +201,9 @@ body {
 .nav-link:hover {
     background: rgba(255, 255, 255, 0.2);
 }
+
+/* Footer Styling*/
+
 
 /* Mobile Toggle Button (Hamburger Menu) */
 .menu-toggle {
@@ -218,7 +234,6 @@ body {
   align-items: center;
   width: 100%;
   gap: 10px;
-  margin-top: 10px;
 }
 
 .cta .btn {
@@ -285,6 +300,9 @@ footer {
     width: 100%;
 }
 
+footer p {
+    color: white;
+}
 
 /* Media Queries for Tablet & Desktop */
 @media (min-width: 768px) {
@@ -369,6 +387,7 @@ footer {
     }
 
     footer {
+        color: white;
         font-size: 1rem;
         padding: 20px 0;
     }
@@ -377,12 +396,10 @@ footer {
 h1 {
     color: #333333;
     font-size: 2em;
-    margin-bottom: 10px;
 }
 
 h2 {
     color: #0078d4;
-    margin-top: 10px;
     margin-bottom: 10px;
 }
 
@@ -402,12 +419,10 @@ p {
 /* Mobile-first styles (default) */
 h1 {
     color: #333333;
-    margin-bottom: 10px;
 }
 
 h2 {
     color: #0078d4;
-    margin-top: 10px;
     margin-bottom: 10px;
 }
 
@@ -428,7 +443,7 @@ p {
 }
 
 
-#my-listings h1, .header-rentings h1 {
+.header-listings h1, .header-rentings h1 {
     font-size: 20px;
     padding: 0;
     margin: 0px;
@@ -625,18 +640,31 @@ button {
 }
 
 /* index.html specific styling starts here */
+.main-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    min-height: 100vh;
+}
+
+.page-content {
+    flex: 1;
+}
+
+
 .main-page-container {
     display: flex;
     flex-direction: row;
     align-items: stretch;
     width: 100%;
     min-height: 100vh;
-    gap: 30px;
     padding: 0;
     margin: 0;
 }
 
 /* filter section */
+
 .filter-section {
     width: 250px;
     background-color: white;
@@ -692,8 +720,6 @@ button {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: center;
-    padding: 20px;
 }
 
 .listing-card {
@@ -702,6 +728,7 @@ button {
     border-radius: 15px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.2s ease-in-out;
+    padding: 12px 6px;
 }
 
 .listing-card:hover {
@@ -908,6 +935,10 @@ button {
 #submit-listing-btn:hover {
     background-color: #0056b3;
     box-shadow: 0px 4px 12px rgba(0, 123, 255, 0.2);
+}
+
+.add-description {
+    padding: 12px;
 }
 
 /* Media Queries for Tablet & Desktop */

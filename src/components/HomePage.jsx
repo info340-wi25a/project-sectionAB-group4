@@ -56,7 +56,9 @@ function ToolList({ tools }) {
 
   return (
     <div id="browse-tools" className="browse-section">
-      <h1>Browse Tools</h1>
+      <div className="page-header">
+        <h1>Browse Tools</h1>
+      </div>
       <div className="marketplace">
         {toolCards}
       </div>
