@@ -1,96 +1,140 @@
-import React from "react";
-import "../index.css"
-import wet_vacuum from "../img/wet-vacuum.jpg"
-import power_drill2 from "../img/power-drill2.jpg"
-import electric_saw from "../img/electric-saw.jpg"
-import concrete_saw from "../img/concrete-saw.jpg"
+import React, { useState, useEffect }from "react";
+import { ref, onValue, update } from "firebase/database";
+import { db } from "../main";
+import "../index.css";
+import placeholderImage from "../img/placeholder-tool.jpg";
 
-function UserRentings({tools}) {
-    console.log(tools)
-    return(
-        <div>
-            <div className ="my-rentings-page">
-                <div className="my-rentings">
-                    <section id="my-rentings">
-                        <div className="header-rentings page-header">
-                            <h1>My Rentings</h1>
-                        </div>
+
+function UserRentings({ user, tools }) {
+    const [currentBookings, setCurrentBookings] = useState([]);
+    const [pastBookings, setPastBookings] = useState([]);
+
+    useEffect(() => {
+        if (!user) return ;
+
+        const bookingsRef = ref(db, "bookings");
+
+        const unregisterFunction = onValue(bookingsRef, (snapshot) => {
+            const bookingsValue = snapshot.val();
+            if (!bookingsValue) {
+                setCurrentBookings([]);
+                setPastBookings([]);
+                return;
+            }
+
+            const allBookingKeys = Object.keys(bookingsValue);
+            const allBookingsArray = allBookingKeys.map((key) => ({
+                id: key,
+                ...bookingsValue[key],
+            }));
+
+            const userBookings = allBookingsArray.filter((booking) => booking.renter_id === user.uid);
+
+            setCurrentBookings(userBookings.filter((booking) => booking.date_returned === ""));
+            setPastBookings(userBookings.filter((booking) => booking.date_returned !== ""));
+
+        });
+
+        return unregisterFunction;
+
+    }, [user]);
+
+    async function handleReturnTool(booking) {
+        const { listing_id } = booking;
+        const toolRef = ref(db, `listings/${listing_id}`);
+        const bookingRef = ref(db, `bookings/${booking.id}`);
+
+        try {
+            await update(toolRef, {
+                isAvailable: true,
+                renter_id: -1,
+            });
+
+            await update(bookingRef, {
+                date_returned: new Date().toISOString(),
+            });
+
+            alert("Tool succesfully returned!");
+        } catch (error) {
+            console.error("Error returning tool:", error);
+            alert("An error occurred while returning the tool. Please try again.");
+        }
+    };
+
+    return (
+        <div className ="my-rentings-page">
+            <div className="my-rentings">
+                <section id="my-rentings">
+                    <div className="header-rentings page-header">
+                        <h1>My Rentings</h1>
+                    </div>
+                </section>
+
+                {/* Current Bookings */}
+                <div className="current-bookings">
+                    <section id="current-bookings">
+                        <h2>Current ({currentBookings.length} Bookings)</h2>
                     </section>
-                    <div className="current-bookings">
-                        <section id="current-bookings">
-                            <h2>Current (2 Bookings)</h2>
-                        </section>
-                        <section id="tool-section">
-                            <div className="tool-img">
-                                <img src={wet_vacuum} style={{float: 'left'}} alt="Vacmaster 5 Gallon Wet/Dry Vacuum"/>
-                            </div>
-                            <div className="tool-details">
-                                <div className="tool-name">
-                                    <h3>Vacmaster 5 Gallon Wet/Dry Vacuum</h3>
-                                </div>
-                                <div className="tool-desc">
-                                    <p>02-18-2025 to 02-20-2025</p>
-                                    <p>In use</p>
-                                </div>
-                            </div>
-                        </section>
-                        <section id="tool-section">
-                            <div className="tool-img">
-                                <img src={power_drill2} style={{float: 'left'}} alt="MPT Power Drill Pro"/>
-                            </div>
-                            <div className="tool-details">
-                                <div className="tool-name">
-                                    <h3>MPT Power Drill Pro</h3>
-                                </div>
-                                <div className="tool-desc">
-                                    <p>02-18-2025 to 02-20-2025</p>
-                                    <p>In use</p>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                    <div className="pending-bookings">
-                        <section id="pending-bookings">
-                            <h2>Pending (1 Booking)</h2>
-                        </section>
-                        <section id="tool-section">
-                            <div className="tool-img">
-                                <img src={electric_saw} style={{float: 'left'}} alt="Bauer Circular Saw"/>
-                            </div>
-                            <div className="tool-details">
-                                <div className="tool-name">
-                                    <h3>Bauer 14 Amp 7-1/4 in. Circular Saw</h3>
-                                </div>
-                                <div className="tool-desc">
-                                    <p>02-14-2025 to 02-16-2025</p>
-                                    <p>Waiting for approval</p>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                    <div className="booking-history">
-                        <section id="booking-history">
-                            <h2>History</h2>
-                        </section>
-                        <section id="tool-section">
-                            <div className="tool-img">
-                                <img src={concrete_saw} style={{float: 'left'}} alt="Neatoom Electric Concrete Saw"/>
-                            </div>
-                            <div className="tool-details">
-                                <div className="tool-name">
-                                    <h3>Neatoom Electric Concrete Saw</h3>
-                                </div>
-                                <div className="tool-desc">
-                                    <p>12-14-2024 to 12-19-2024</p>
-                                    <p>Completed</p>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
+                    {currentBookings.length > 0 ? (
+                        currentBookings.map((booking) => (
+                            <BookingCard key={booking.id} booking={booking} tools={tools} onReturn={handleReturnTool} />
+                        ))
+                    ) : (
+                        <p>No current bookings.</p>
+                    )}
+                </div>
+
+                {/* Past Bookings */}
+                <div className="booking-history">
+                    <section id="booking-history">
+                        <h2>History</h2>
+                    </section>
+                    {pastBookings.length > 0 ? (
+                        pastBookings.map((booking) => <BookingCard key={booking.id} booking={booking} tools={tools} />)
+                    ) : (
+                        <p>No past bookings.</p>
+                    )}
                 </div>
             </div>
         </div>
+    );
+}
+
+function BookingCard({ booking, tools, onReturn }) {
+    const tool = tools.find((t) => t.id === booking.listing_id) || {};
+
+    let showReturnButton = false;
+
+    if (!booking.date_returned && onReturn) {
+        showReturnButton = true;
+    }
+
+    return (
+        <section id="tool-section">
+            <div className="tool-img">
+                <img src={tool.imageBase64 || placeholderImage} alt={tool.toolName || "Tool image"} />
+            </div>
+            <div className="tool-details">
+                <div className="tool-name">
+                    <h3>{tool.toolName || "Booking ID#: " + booking.id || "Unknown Tool"}</h3>
+                </div>
+                <div className="tool-desc">
+                    <p>Booked on: {new Date(booking.date_booked).toLocaleDateString()}</p>
+                    {booking.date_returned ? (
+                        <p>Returned on: {new Date(booking.date_returned).toLocaleDateString()}</p>
+                    ) : (
+                        <p>Status: In use</p>
+                    )}
+                </div>
+            </div>
+            {showReturnButton ? (
+                <button onClick={() => onReturn(booking)} className="return-tool-btn">
+                    Return Tool
+                </button>
+            ) : null}
+        </section>
     )
 }
+
 
 export default UserRentings

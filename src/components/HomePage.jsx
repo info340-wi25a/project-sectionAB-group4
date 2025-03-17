@@ -6,9 +6,8 @@ import placeholderImage from "../img/placeholder-tool.jpg";
 export default function HomePage({ tools }) {
   const [filteredTools, setFilteredTools] = useState(tools);
 
-  const applyFilters = (filters) => {
+  function applyFilters(filters) {
     let filtered = [...tools];
-
 
     // Keyword filtering
     if (filters.keyword && filters.keyword.trim() !== "") {

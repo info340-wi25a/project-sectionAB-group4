@@ -31,7 +31,7 @@ export function NavBar({ user, setUser }) {
           <>
             <li><NavLink to="/user-listings" className="nav-link">Your Listings</NavLink></li>
             <li><NavLink to="/user-rentings" className="nav-link">Your Rentings</NavLink></li>
-            <li><NavLink to="/create-listing" className="nav-link">Create Listings</NavLink></li>
+            <li><NavLink to="/create-listing" className="nav-link">Create Listing</NavLink></li>
 
           </>
         )}

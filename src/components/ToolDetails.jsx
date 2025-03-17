@@ -1,8 +1,7 @@
 import React from "react";
 import { useParams, useNavigate, Link } from 'react-router';
-import { ref, update } from "firebase/database";
+import { ref, update, push, set } from "firebase/database";
 import { db } from "../main";
-import arcWeldingImage from "../img/arc_welding_machine.jpg";
 import "../index.css";
 import placeholderImage from "../img/placeholder-tool.jpg";
 
@@ -13,10 +12,10 @@ function ToolDetails( { tools, user } ) {
     const tool = tools.find((t) => t.id === toolId );
 
     if (!tool) {
-        return <p>Tool not found</p>; // Tool does not exist
+        return <p>Tool not found</p>;
     }
 
-    const handleBook = async () => {
+    async function handleBook() {
         if (!user) {
             alert("You must be logged in to rent this tool.");
         } else {
@@ -24,12 +23,23 @@ function ToolDetails( { tools, user } ) {
                 alert("This tool is already booked..");
             }
             const toolRef = ref(db, `listings/${toolId}`);
+            const bookingsRef = push(ref(db, "bookings"));
+
+            const newBooking = {
+                date_booked: new Date().toISOString(),
+                date_returned: "",
+                lister_id: tool.lister_id,
+                listing_id: tool.id,
+                renter_id: user.uid,
+            };
 
             try {
                 await update(toolRef, {
                     isAvailable: false,
                     renter_id: user.uid,
                 });
+
+                await set(bookingsRef, newBooking);
 
                 alert("Booking successful! The tool is now rented to you.");
                 navigate("/home");

@@ -47,11 +47,11 @@ function ListingCard({myTool, deleteListing, setEditingTool}) {
         imageSrc = null;
     }
 
-    const handleDelete = () => {
+    function handleDelete() {
         deleteListing(myTool.id);
     }
 
-    const handleEdit = () => {
+    function handleEdit() {
         if (myTool.isAvailable) {
             setEditingTool(myTool);
             navigate("/edit-listing");
@@ -63,7 +63,7 @@ function ListingCard({myTool, deleteListing, setEditingTool}) {
     return (
         <section id="tool-section">
         <div className="tool-img">
-            <img src={imageSrc || placeholderImage} style={{float: 'left'}} alt={myTool.toolName || "Tool image"}/>
+            <img src={imageSrc || placeholderImage} alt={myTool.toolName || "Tool image"}/>
         </div>
         <div className="tool-details">
             <div className="tool-name">

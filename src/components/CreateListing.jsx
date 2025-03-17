@@ -12,7 +12,7 @@ export function CreateListing({ user, saveListing, tool }) {
   const [condition, setCondition] = useState(tool ? tool.condition : "");
   const [redirect, setRedirect] = useState(false);
 
-  const handlePictureUpload = (event) => {
+  function handlePictureUpload(event) {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -23,40 +23,39 @@ export function CreateListing({ user, saveListing, tool }) {
     }
   };
 
-  const handleSubmit = async (event) => {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     if (!user) {
       alert("You must be logged in to create a listing.");
-    } else {
+      return;
+    }
 
-      // Create listing object following Firebase schema
-      const newListing = {
-        id: tool ? tool.id : null,
-        toolName,
-        category,
-        condition,
-        dateListed: tool ? tool.dateListed : new Date().toISOString(),
-        dateRented: null, // Note rented initially
-        description,
-        imageBase64: pictures || "", // Sore Base64 image string
-        isAvailable: true, // Tool is initially available
-        lister_id: tool ? tool.lister_id : user.uid, // Owner ID
-        location,
-        pricePerDay: parseFloat(pricePerDay),
-        renter_id: -1, // No renter initially
-      };
-
-      try {
-        const listingId = await saveListing(newListing); // Add to Firebase
-        newListing.listingId = listingId; // Assign Firebase ID
-        alert(tool ? "Listing updated successfully!" : "Listing created successfully!");
-        setRedirect(true);
-      } catch (error) {
-        console.error("Error saving listing:", error);
-        alert("An error occurred while saving the listing.");
-      }
+    const newListing = {
+      id: tool ? tool.id : null,
+      toolName,
+      category,
+      condition,
+      dateListed: tool ? tool.dateListed : new Date().toISOString(),
+      dateRented: null,
+      description,
+      imageBase64: pictures || "",
+      isAvailable: true,
+      lister_id: tool ? tool.lister_id : user.uid,
+      location,
+      pricePerDay: parseFloat(pricePerDay),
+      renter_id: -1,
     };
+
+    try {
+      const listingId = await saveListing(newListing);
+      newListing.listingId = listingId;
+      alert(tool ? "Listing updated successfully!" : "Listing created successfully!");
+      setRedirect(true);
+    } catch (error) {
+      console.error("Error saving listing:", error);
+      alert("An error occurred while saving the listing.");
+    }
   }
 
   if (redirect) {

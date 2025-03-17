@@ -23,22 +23,37 @@ function RequireAuth({ user }) {
   }
 }
 
-const addListing =  async (newListing) => {
+async function addListing(newListing) {
   const newListingRef = push(ref(db, "listings"));
   const newListingWithId = { ...newListing, id: newListingRef.key };
   await set(newListingRef, newListingWithId);
   return newListingRef.key;
 }
 
-const removeListing = async (listingId) => {
-  const listingRef = ref(db, `listings/${listingId}`);
-  await remove(listingRef);
+// const addListing =  async (newListing) => {
+//   const newListingRef = push(ref(db, "listings"));
+//   const newListingWithId = { ...newListing, id: newListingRef.key };
+//   await set(newListingRef, newListingWithId);
+//   return newListingRef.key;
+// }
+
+async function removeListing(listingId) {
+  await remove(ref(db, `listings/${listingId}`));
 }
 
-const editListing = async (listing) => {
-  const listingRef = ref(db, `listings/${listing.id}`);
-  await update(listingRef, listing);
+// const removeListing = async (listingId) => {
+//   const listingRef = ref(db, `listings/${listingId}`);
+//   await remove(listingRef);
+// }
+
+async function editListing(listing) {
+  await update(ref(db, `listings/${listing.id}`), listing);
 }
+
+// const editListing = async (listing) => {
+//   const listingRef = ref(db, `listings/${listing.id}`);
+//   await update(listingRef, listing);
+// }
 
 function App() {
   const [user, setUser] = useState(null);
@@ -46,20 +61,11 @@ function App() {
   const [tools, setTools] = useState([]);
 
   useEffect(() => {
-    // Listen for authentication state changes
     const unsubscribe = onAuthStateChanged(auth, (authUser) => {
-      if (authUser) {
-        setUser(authUser);
-      } else {
-        setUser(null);
-      }
+      setUser(authUser || null);
     });
 
-    function cleanup() {
-      unsubscribe();
-    }
-
-    return cleanup;
+    return unsubscribe;
   }, []);
 
   useEffect(() => {
@@ -95,15 +101,12 @@ function App() {
           <NavBar user={user} setUser={setUser} />
         </header>
 
-        {/* Routes Defined Here */}
         <Routes>
-          {/* Public Routes */}
           <Route path="/home" element={<HomePage tools={tools} />} />
           <Route path="/browse-tools" element={<HomePage tools={tools} />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
 
-          {/* Protected Routes */}
           <Route element={<RequireAuth user={user} />}>
             <Route path="/user-listings" element={<UserListings tools={tools} user={user} deleteListing={removeListing} setEditingTool={setEditingTool} />} />
             <Route path="/user-rentings" element={<UserRentings user={user} tools={tools}/>} />
@@ -113,7 +116,6 @@ function App() {
             <Route path="/edit-listing" element={<CreateListing user={user} saveListing={editListing} tool={editingTool} />} />
           </Route>
 
-          {/* Redirect All Unknown Routes */}
           <Route path="*" element={<Navigate to="/home" />} />
         </Routes>
       </div>
