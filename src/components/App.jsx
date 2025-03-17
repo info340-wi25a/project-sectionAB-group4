@@ -30,30 +30,13 @@ async function addListing(newListing) {
   return newListingRef.key;
 }
 
-// const addListing =  async (newListing) => {
-//   const newListingRef = push(ref(db, "listings"));
-//   const newListingWithId = { ...newListing, id: newListingRef.key };
-//   await set(newListingRef, newListingWithId);
-//   return newListingRef.key;
-// }
-
 async function removeListing(listingId) {
   await remove(ref(db, `listings/${listingId}`));
 }
 
-// const removeListing = async (listingId) => {
-//   const listingRef = ref(db, `listings/${listingId}`);
-//   await remove(listingRef);
-// }
-
 async function editListing(listing) {
   await update(ref(db, `listings/${listing.id}`), listing);
 }
-
-// const editListing = async (listing) => {
-//   const listingRef = ref(db, `listings/${listing.id}`);
-//   await update(listingRef, listing);
-// }
 
 function App() {
   const [user, setUser] = useState(null);
