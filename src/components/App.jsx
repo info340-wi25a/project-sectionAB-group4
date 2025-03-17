@@ -3,11 +3,11 @@ import { Routes, Route, Navigate, Outlet} from 'react-router';
 import { NavBar } from './Nav';
 import { Footer } from './Footer';
 import HomePage from './HomePage'
-import UserListings from './user-listings'
-import UserRentings from './user-rentings'
+import UserListings from './UserListings'
+import UserRentings from './UserRentings'
 import { CreateListing } from './CreateListing';
-import BookingDetails from './booking-details'
-import ToolDetails from './tool-details'
+import BookingDetails from './BookingDetails'
+import ToolDetails from './ToolDetails'
 import Signup from './Signup';
 import Login from './Login';
 import { ref, onValue, push, set, remove, update } from 'firebase/database';
