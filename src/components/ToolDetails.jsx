@@ -70,9 +70,9 @@ function ToolInfo({ toolName, pricePerDay, isAvailable, location, handleBook }) 
         <div className="tool-info">
             <h1>Tool Details</h1>
             <h2>{toolName}</h2>
-            <p className="tool-price" id="tool-price">${pricePerDay}/day</p>
-            <p className="tool-status" id="tool-status">Status: {isAvailable ? "Available" : "Rented"}</p>
-            <p className="tool-location" id="tool-location">Location: {location}</p>
+            <p>${pricePerDay}/day</p>
+            <p>Status: {isAvailable ? "Available" : "Rented"}</p>
+            <p>Location: {location}</p>
             <button onClick={handleBook} disabled={!isAvailable} className="rent-button">
                 {isAvailable ? "Rent This Tool" : "Unavailable"}
             </button>

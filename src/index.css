@@ -453,7 +453,7 @@ p {
     font-size: 18px;
 }
 
-#tool-section{
+.tool-section{
     display: flex;
     align-items: center;
     gap: 15px;
@@ -1009,7 +1009,7 @@ button {
         font-size: 1.2rem;
     }
 
-    #submit-listing-btn {
+    .submit-listing-btn {
         font-size: 1.3rem;
         padding: 16px;
         width: 100%;

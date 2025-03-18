@@ -16,13 +16,13 @@ function UserListings({tools, user, deleteListing, setEditingTool}) {
     return(
         <div className="my-listings-page">
             <div className="my-listings">
-                <section id="my-listings">
+                <section>
                     <div className="header-listings page-header">
                         <h1>My Listings</h1>
                     </div>
                 </section>
                 <div className="active-listings">
-                    <section id="active-listings">
+                    <section>
                         <h2>{`Active (${myTools.length} Listings)`}</h2>
                     </section>
                     {myToolCards}
@@ -62,7 +62,7 @@ function ListingCard({myTool, deleteListing, setEditingTool}) {
     }
 
     return (
-        <section id="tool-section">
+        <section className="tool-section">
         <div className="tool-img">
             <img src={imageSrc || placeholderImage} alt={myTool.toolName || "Tool image"}/>
         </div>

@@ -77,21 +77,21 @@ function UserRentings({ user, tools }) {
     return (
         <div className ="my-rentings-page">
             <div className="my-rentings">
-                <section id="my-rentings">
+                <section>
                     <div className="header-rentings page-header">
                         <h1>My Rentings</h1>
                     </div>
                 </section>
 
                 <div className="current-bookings">
-                    <section id="current-bookings">
+                    <section>
                         <h2>Current ({currentBookings.length} Bookings)</h2>
                     </section>
                     {currUserBookingsCards}
                 </div>
 
                 <div className="booking-history">
-                    <section id="booking-history">
+                    <section>
                         <h2>History</h2>
                     </section>
                     {pastUserBookingsCards}
@@ -113,7 +113,7 @@ function BookingCard({ booking, tools, onReturn }) {
     const bookedStatus = booking.date_returned ? "Returned on " +  new Date(booking.date_returned).toLocaleDateString() : "In use";
 
     return (
-        <section id="tool-section">
+        <section className="tool-section">
             <div className="tool-img">
                 <img src={tool.imageBase64 || placeholderImage} alt={tool.toolName || "Tool image"} />
             </div>
