@@ -44,8 +44,7 @@ function ToolDetails( { tools, user } ) {
                 alert("Booking successful! The tool is now rented to you.");
                 navigate("/home");
             } catch (error) {
-                console.error("Error booking tool:", error);
-                alert("An error occurred while booking the tool. Please try again.");
+                alert("Error booking tool: " + error.message);
             }
         }
     }

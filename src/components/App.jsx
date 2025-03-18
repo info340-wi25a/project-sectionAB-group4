@@ -6,7 +6,6 @@ import HomePage from './HomePage'
 import UserListings from './UserListings'
 import UserRentings from './UserRentings'
 import { CreateListing } from './CreateListing';
-import BookingDetails from './BookingDetails'
 import ToolDetails from './ToolDetails'
 import Signup from './Signup';
 import Login from './Login';
@@ -24,18 +23,32 @@ function RequireAuth({ user }) {
 }
 
 async function addListing(newListing) {
-  const newListingRef = push(ref(db, "listings"));
-  const newListingWithId = { ...newListing, id: newListingRef.key };
-  await set(newListingRef, newListingWithId);
-  return newListingRef.key;
+  try {
+    const newListingRef = push(ref(db, "listings"));
+    const newListingWithId = { ...newListing, id: newListingRef.key };
+    await set(newListingRef, newListingWithId);
+    return "Listing successfully created!";
+  } catch (error) {
+    return error.message;
+  }
 }
 
 async function removeListing(listingId) {
-  await remove(ref(db, `listings/${listingId}`));
+  try {
+    await remove(ref(db, `listings/${listingId}`));
+    return "Listing successfully deleted!";
+  } catch (error) {
+    return "An error occurred while deleting your listing." + error.message;
+  }
 }
 
 async function editListing(listing) {
-  await update(ref(db, `listings/${listing.id}`), listing);
+  try {
+    await update(ref(db, `listings/${listing.id}`), listing);
+    return "Listing successfully updated!";
+  } catch (error) {
+    return error.message;
+  }
 }
 
 function App() {
@@ -100,7 +113,6 @@ function App() {
             <Route path="/user-listings" element={<UserListings tools={tools} user={user} deleteListing={removeListing} setEditingTool={setEditingTool} />} />
             <Route path="/user-rentings" element={<UserRentings user={user} tools={tools}/>} />
             <Route path="/create-listing" element={<CreateListing user={user} saveListing={addListing} />} />
-            <Route path="/booking-details" element={<BookingDetails user={user} />} />
             <Route path="/tool-details/:toolId" element={<ToolDetails user={user} tools={tools} />} />
             <Route path="/edit-listing" element={<CreateListing user={user} saveListing={editListing} tool={editingTool} />} />
           </Route>

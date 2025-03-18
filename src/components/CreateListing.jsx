@@ -48,13 +48,11 @@ export function CreateListing({ user, saveListing, tool }) {
     };
 
     try {
-      const listingId = await saveListing(newListing);
-      newListing.listingId = listingId;
-      alert(tool ? "Listing updated successfully!" : "Listing created successfully!");
+      const response = await saveListing(newListing);
+      alert(response);
       setRedirect(true);
     } catch (error) {
-      console.error("Error saving listing:", error);
-      alert("An error occurred while saving the listing.");
+      alert("An error occurred while saving your listing" + response);
     }
   }
 

@@ -28,7 +28,7 @@ function Login({ users, setUser }) {
 
   return (
     <div className="login-page">
-      <h2>Login</h2>
+      <h1>Login</h1>
       <form onSubmit={handleLogin} className="login-form">
         {error && <p className="error-message">{error}</p>}
 

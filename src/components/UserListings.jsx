@@ -47,8 +47,9 @@ function ListingCard({myTool, deleteListing, setEditingTool}) {
         imageSrc = null;
     }
 
-    function handleDelete() {
-        deleteListing(myTool.id);
+    async function handleDelete() {
+        const result = await deleteListing(myTool.id);
+        alert(result);
     }
 
     function handleEdit() {

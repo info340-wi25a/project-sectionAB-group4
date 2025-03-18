@@ -13,24 +13,20 @@ export default function HomePage({ tools }) {
   function applyFilters(filters) {
     let filtered = [...tools];
 
-    // Keyword filtering
     if (filters.keyword && filters.keyword.trim() !== "") {
         filtered = filtered.filter((tool) =>
             tool.toolName.toLowerCase().includes(filters.keyword.toLowerCase())
         );
     }
 
-    // Location filtering
     if (filters.location && filters.location.trim() !== "") {
       filtered = filtered.filter((tool) =>
         tool.location.toLowerCase().includes(filters.location.toLowerCase())
       );
     }
 
-    // Price filtering
     filtered = filtered.filter((tool) => tool.pricePerDay >= filters.minPrice && tool.pricePerDay <= filters.maxPrice);
 
-    // Category filtering
     if (filters.category && filters.category !== "all") {
       filtered = filtered.filter((tool) => tool.category === filters.category);
     }
@@ -47,7 +43,6 @@ export default function HomePage({ tools }) {
 }
 
 function ToolList({ tools }) {
-  // filter only tools that are available before creating cards
   const availableTools = tools.filter((tool) => {
     return tool.isAvailable;
   });

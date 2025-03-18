@@ -56,8 +56,7 @@ function UserRentings({ user, tools }) {
 
             alert("Tool succesfully returned!");
         } catch (error) {
-            console.error("Error returning tool:", error);
-            alert("An error occurred while returning the tool. Please try again.");
+            alert("Error returning tool: " + error.message);
         }
     };
 
@@ -70,7 +69,6 @@ function UserRentings({ user, tools }) {
                     </div>
                 </section>
 
-                {/* Current Bookings */}
                 <div className="current-bookings">
                     <section id="current-bookings">
                         <h2>Current ({currentBookings.length} Bookings)</h2>
@@ -84,7 +82,6 @@ function UserRentings({ user, tools }) {
                     )}
                 </div>
 
-                {/* Past Bookings */}
                 <div className="booking-history">
                     <section id="booking-history">
                         <h2>History</h2>

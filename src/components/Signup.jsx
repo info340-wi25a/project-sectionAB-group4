@@ -6,10 +6,6 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 function Signup({ users, setUsers }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [firstName, setFirstName] = useState('');
-  // const [lastName, setLastName] = useState('');
-  // const [locationState, setLocationState] = useState('');
-  // const [locationCity, setLocationCity] = useState('');
   const [error, setError] = useState('');
   const [redirect, setRedirect] = useState(false);
 
@@ -31,7 +27,7 @@ function Signup({ users, setUsers }) {
 
   return (
     <div className="signup-page">
-      <h2>Sign Up</h2>
+      <h1>Sign Up</h1>
       <form onSubmit={handleSignup} className="signup-form">
         {error ? <p className="error-message">{error}</p> : null}
 

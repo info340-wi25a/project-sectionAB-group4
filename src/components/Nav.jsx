@@ -13,7 +13,7 @@ export function NavBar({ user, setUser }) {
       await signOut(auth);
       setUser(null);
     } catch (error) {
-      console.error("Error loggin out:", error);
+      alert("Error logging out:" + error.message);
     }
   };
 

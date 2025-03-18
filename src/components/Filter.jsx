@@ -27,13 +27,12 @@ function Filter({ onFilterApply }) {
     setCategory(event.target.value);
   };
 
-  // Handle form submission
   const handleSubmit = () => {
     const filterValues = {
       keyword,
       location,
       minPrice: minPrice ? Number(minPrice) : 0,
-      maxPrice: maxPrice ? Number(maxPrice) : Infinity,
+      maxPrice: maxPrice ? Number(maxPrice) : 999999999,
       category,
     };
     onFilterApply(filterValues);
@@ -42,15 +41,15 @@ function Filter({ onFilterApply }) {
   const handleReset = () => {
     setKeyword("");
     setLocation("");
-    setMinPrice(0);
-    setMaxPrice(Infinity);
+    setMinPrice("");
+    setMaxPrice("");
     setCategory("all");
 
     onFilterApply({
       keyword: "",
       location: "",
       minPrice: 0,
-      maxPrice: Infinity,
+      maxPrice: "999999999",
       category: "all",
     });
   }
