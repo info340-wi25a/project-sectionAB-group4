@@ -10,7 +10,7 @@ function UserRentings({ user, tools }) {
     const [pastBookings, setPastBookings] = useState([]);
 
     useEffect(() => {
-        if (!user) return ;
+        if (!user) return;
 
         const bookingsRef = ref(db, "bookings");
 
@@ -60,6 +60,20 @@ function UserRentings({ user, tools }) {
         }
     };
 
+    let currUserBookingsCards = "No current bookings";
+    if (currentBookings.length > 0) {
+        currUserBookingsCards = currentBookings.map((booking) => (
+            <BookingCard key={booking.id} booking={booking} tools={tools} onReturn={handleReturnTool} />
+        ));
+    }
+
+    let pastUserBookingsCards = "No past bookings";
+    if (pastBookings.length > 0) {
+        pastUserBookingsCards = pastBookings.map((booking) => (
+            <BookingCard key={booking.id} booking={booking} tools={tools} />
+        ));
+    }
+
     return (
         <div className ="my-rentings-page">
             <div className="my-rentings">
@@ -73,24 +87,14 @@ function UserRentings({ user, tools }) {
                     <section id="current-bookings">
                         <h2>Current ({currentBookings.length} Bookings)</h2>
                     </section>
-                    {currentBookings.length > 0 ? (
-                        currentBookings.map((booking) => (
-                            <BookingCard key={booking.id} booking={booking} tools={tools} onReturn={handleReturnTool} />
-                        ))
-                    ) : (
-                        <p>No current bookings.</p>
-                    )}
+                    {currUserBookingsCards}
                 </div>
 
                 <div className="booking-history">
                     <section id="booking-history">
                         <h2>History</h2>
                     </section>
-                    {pastBookings.length > 0 ? (
-                        pastBookings.map((booking) => <BookingCard key={booking.id} booking={booking} tools={tools} />)
-                    ) : (
-                        <p>No past bookings.</p>
-                    )}
+                    {pastUserBookingsCards}
                 </div>
             </div>
         </div>
@@ -106,6 +110,8 @@ function BookingCard({ booking, tools, onReturn }) {
         showReturnButton = true;
     }
 
+    const bookedStatus = booking.date_returned ? "Returned on " +  new Date(booking.date_returned).toLocaleDateString() : "In use";
+
     return (
         <section id="tool-section">
             <div className="tool-img">
@@ -117,11 +123,7 @@ function BookingCard({ booking, tools, onReturn }) {
                 </div>
                 <div className="tool-desc">
                     <p>Booked on: {new Date(booking.date_booked).toLocaleDateString()}</p>
-                    {booking.date_returned ? (
-                        <p>Returned on: {new Date(booking.date_returned).toLocaleDateString()}</p>
-                    ) : (
-                        <p>Status: In use</p>
-                    )}
+                    <p>{bookedStatus}</p>
                 </div>
             </div>
             {showReturnButton ? (
