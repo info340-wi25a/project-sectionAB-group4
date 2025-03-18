@@ -16,7 +16,7 @@ export default function HomePage({ tools }) {
     // Keyword filtering
     if (filters.keyword && filters.keyword.trim() !== "") {
         filtered = filtered.filter((tool) =>
-            tool.name.toLowerCase().includes(filters.keyword.toLowerCase())
+            tool.toolName.toLowerCase().includes(filters.keyword.toLowerCase())
         );
     }
 
@@ -28,7 +28,7 @@ export default function HomePage({ tools }) {
     }
 
     // Price filtering
-    filtered = filtered.filter((tool) => tool.price >= filters.minPrice && tool.price <= filters.maxPrice);
+    filtered = filtered.filter((tool) => tool.pricePerDay >= filters.minPrice && tool.pricePerDay <= filters.maxPrice);
 
     // Category filtering
     if (filters.category && filters.category !== "all") {

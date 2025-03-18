@@ -28,7 +28,7 @@ function Filter({ onFilterApply }) {
   };
 
   // Handle form submission
-  const handleSubmit = (event) => {
+  const handleSubmit = () => {
     const filterValues = {
       keyword,
       location,
@@ -39,7 +39,7 @@ function Filter({ onFilterApply }) {
     onFilterApply(filterValues);
   };
 
-  const handleReset = (event) => {
+  const handleReset = () => {
     setKeyword("");
     setLocation("");
     setMinPrice(0);
