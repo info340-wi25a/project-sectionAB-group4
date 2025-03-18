@@ -76,8 +76,10 @@ function ToolCard(props) {
           <img src={tool.imageBase64 || placeholderImage} alt={tool.toolName || "Tool image"} />
             <div className='listing-details'>
                 <h3>{tool.toolName}</h3>
+                <p className='location'>{tool.location}</p>
                 <p className='price'>{`$${tool.pricePerDay}/day`}</p>
                 <p className='description'>{tool.description}</p>
+
             </div>
          </Link>
     );
