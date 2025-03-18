@@ -17,7 +17,7 @@ export function CreateListing({ user, saveListing, tool }) {
     if (file) {
       const reader = new FileReader();
       reader.onload = function (e) {
-        setPictures(e.target.result); // Store Base64 string
+        setPictures(e.target.result);
       };
       reader.readAsDataURL(file);
     }
